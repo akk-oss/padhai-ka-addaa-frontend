@@ -71,7 +71,7 @@ function Notes() {
                                     <div className="mt-3">
 
                                         <a
-                                            href={`http://localhost:8081${note.fileUrl}`}
+                                            href={`https://padhai-ka-addaa.onrender.com${note.fileUrl}`}
                                             target="_blank"
                                             rel="noreferrer"
                                             className="btn btn-primary w-100"
