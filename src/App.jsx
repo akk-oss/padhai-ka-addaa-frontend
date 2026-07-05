@@ -12,7 +12,7 @@ import LessonPlayer from "./pages/LessonPlayer";
 import Notes from "./pages/Notes";
 import QuizAttempt from "./pages/QuizAttempt";
 import QuizResult from "./pages/QuizResult";
-import MockTests from "./pages/MockTests";
+import MockTests from "./pages/mockTests";
 import StudentDashboard from "./dashboard/StudentDashboard";
 import TeacherDashboard from "./dashboard/TeacherDashboard";
 import AdminDashboard from "./dashboard/AdminDashboard";
