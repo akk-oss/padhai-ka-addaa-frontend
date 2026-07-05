@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import DashboardLayout from "../layouts/DashboardLayout";
 import { getAllQuizzes } from "../services/quizService";
-import "../assets/css/mockTests.css";
+import "../assets/css/mocktests.css";
 
 function MockTests() {
 
