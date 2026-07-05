@@ -1,0 +1,12 @@
+@media (max-width:768px){
+
+video{
+    width:100%;
+    height:auto;
+}
+
+.lesson-list{
+    margin-top:20px;
+}
+
+}

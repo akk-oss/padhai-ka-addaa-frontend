@@ -1,0 +1,80 @@
+.curriculum-page{
+
+    flex:1;
+    background:#f6f8fc;
+    padding:35px;
+
+}
+
+.curriculum-card{
+
+    background:#fff;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.curriculum-header{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:25px 30px;
+    border-bottom:1px solid #eee;
+
+}
+
+.curriculum-header h3{
+
+    margin:0;
+    font-weight:700;
+
+}
+
+.lesson-item{
+
+    display:flex;
+    justify-content:space-between;
+    padding:12px 5px;
+    border-bottom:1px solid #f2f2f2;
+    font-size:15px;
+
+}
+
+.lesson-item:last-child{
+
+    border:none;
+
+}
+
+.accordion-button{
+
+    font-weight:600;
+
+}
+
+.accordion-button:not(.collapsed){
+
+    background:white;
+    color:#000;
+
+}
+
+.accordion-item{
+
+    border:none;
+    border-bottom:1px solid #ececec;
+
+}
+@media (max-width:768px){
+
+.curriculum-container{
+    padding:15px;
+}
+
+.lesson-row{
+    font-size:14px;
+}
+
+}

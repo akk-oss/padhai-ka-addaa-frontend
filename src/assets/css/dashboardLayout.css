@@ -1,0 +1,22 @@
+.dashboard-container{
+    display:flex;
+    min-height:calc(100vh - 72px);
+}
+
+/* Sidebar */
+
+.sidebar{
+    width:240px;
+    flex-shrink:0;
+    background:#fff;
+    border-right:1px solid #eee;
+}
+
+/* Main Content */
+
+
+.dashboard-content{
+    flex: 1;
+    padding: 20px;
+    margin: 0;
+}

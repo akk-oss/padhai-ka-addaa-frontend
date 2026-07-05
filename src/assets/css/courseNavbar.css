@@ -1,0 +1,109 @@
+.course-navbar{
+    height:72px;
+    background:#fff;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 25px;
+    border-bottom:1px solid #ececec;
+    box-shadow:0 2px 10px rgba(0,0,0,.05);
+    position:sticky;
+    top:0;
+    z-index:999;
+}
+
+.course-navbar-left{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.course-logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    text-decoration:none;
+}
+
+.course-logo-img{
+    width:42px;
+    height:42px;
+}
+
+.course-logo h5{
+    margin:0;
+    color:#2563eb;
+    font-size:20px;
+    font-weight:700;
+}
+
+.course-logo small{
+    color:#777;
+    font-size:11px;
+}
+
+.divider{
+    width:1px;
+    height:28px;
+    background:#ddd;
+}
+
+.back-btn{
+    border:none;
+    background:none;
+    color:#444;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.back-btn:hover{
+    color:#2563eb;
+}
+
+/* Mobile Menu Button */
+
+.course-menu-btn{
+    display:none;
+    width:42px;
+    height:42px;
+    border:none;
+    border-radius:10px;
+    background:#f3f4f6;
+    color:#2563eb;
+    font-size:20px;
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width:768px){
+
+.course-navbar{
+    padding:0 15px;
+    height:65px;
+}
+
+.course-logo h5{
+    font-size:18px;
+}
+
+.course-logo small{
+    display:none;
+}
+
+.divider{
+    display:none;
+}
+
+.back-btn{
+    font-size:14px;
+}
+
+.course-menu-btn{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+}
