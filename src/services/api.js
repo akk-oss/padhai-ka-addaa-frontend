@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-   baseURL: "https://padhai-ka-addaa.onrender.com/api",
+   baseURL: "https://padhaikaaddaa.online/api",
     headers: {
         "Content-Type": "application/json"
     }

@@ -6,13 +6,20 @@ function CourseCard({ title, teacher, image }) {
 
     try {
 
+      console.log("Creating Razorpay Order...");
+
       // Backend se order create karo
-      const { data } = await axios.post(
+      const response = await axios.post(
         "https://padhaikaaddaa.online/api/payment/create-order"
       );
 
+      console.log("Full Response:", response);
+      console.log("Order Response:", response.data);
+
+      const data = response.data;
+
       const options = {
-        key: "rzp_live_TAHPsInsNF3Z68", // Apni Razorpay Key ID
+        key: "rzp_live_TAHPsInsNF3Z68",
         amount: data.amount,
         currency: data.currency,
         name: "Padhai Ka Addaa",
@@ -22,21 +29,34 @@ function CourseCard({ title, teacher, image }) {
 
         handler: async function (response) {
 
+          console.log("Payment Success:", response);
+
           alert("Payment Successful");
 
-          // Enrollment API Call
-          await axios.post(
-            "https://padhaikaaddaa.online/api/enrollment/enroll",
-            {},
-            {
-              headers: {
-                Authorization:
-                  "Bearer " + localStorage.getItem("token"),
-              },
-            }
-          );
+          try {
 
-          alert("Enrollment Successful");
+            const enrollResponse = await axios.post(
+              "https://padhaikaaddaa.online/api/enrollment/enroll",
+              {},
+              {
+                headers: {
+                  Authorization:
+                    "Bearer " + localStorage.getItem("token"),
+                },
+              }
+            );
+
+            console.log("Enrollment:", enrollResponse.data);
+
+            alert("Enrollment Successful");
+
+          } catch (err) {
+
+            console.log("Enrollment Error:", err);
+
+            alert("Enrollment Failed");
+
+          }
 
         },
 
@@ -51,17 +71,38 @@ function CourseCard({ title, teacher, image }) {
         },
       };
 
+      console.log("Razorpay Options:", options);
+
+      if (!window.Razorpay) {
+        alert("Razorpay SDK Not Loaded");
+        return;
+      }
+
       const paymentObject = new window.Razorpay(options);
+
+      paymentObject.on("payment.failed", function (response) {
+
+        console.log("Payment Failed:", response);
+
+        alert("Payment Failed");
+
+      });
 
       paymentObject.open();
 
     } catch (error) {
 
-      console.log(error);
+      console.log("Create Order Error:", error);
+
+      if (error.response) {
+        console.log("Status:", error.response.status);
+        console.log("Response:", error.response.data);
+      }
 
       alert("Payment Failed");
 
     }
+
   };
 
   return (

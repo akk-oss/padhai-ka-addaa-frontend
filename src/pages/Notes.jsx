@@ -71,7 +71,7 @@ function Notes() {
                                     <div className="mt-3">
 
                                         <a
-                                            href={`https://padhai-ka-addaa.onrender.com${note.fileUrl}`}
+                                            href={`https://padhaikaaddaa.online${note.fileUrl}`}
                                             target="_blank"
                                             rel="noreferrer"
                                             className="btn btn-primary w-100"
