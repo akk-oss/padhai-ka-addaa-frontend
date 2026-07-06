@@ -1,8 +1,20 @@
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function CourseCard({ title, teacher, image }) {
 
+  const navigate = useNavigate();
+
   const handlePayment = async () => {
+
+    // Login Check
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      alert("Please login to buy this course.");
+      navigate("/login");
+      return;
+    }
 
     try {
 
@@ -10,10 +22,15 @@ function CourseCard({ title, teacher, image }) {
 
       // Backend se order create karo
       const response = await axios.post(
-        "https://padhaikaaddaa.online/api/payment/create-order"
+        "https://padhai-ka-addaa.onrender.com/api/payment/create-order",
+        {},
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
       );
 
-      console.log("Full Response:", response);
       console.log("Order Response:", response.data);
 
       const data = response.data;
@@ -36,12 +53,11 @@ function CourseCard({ title, teacher, image }) {
           try {
 
             const enrollResponse = await axios.post(
-              "https://padhaikaaddaa.online/api/enrollment/enroll",
+              "https://padhai-ka-addaa.onrender.com/api/enrollment/enroll",
               {},
               {
                 headers: {
-                  Authorization:
-                    "Bearer " + localStorage.getItem("token"),
+                  Authorization: "Bearer " + token,
                 },
               }
             );
@@ -70,8 +86,6 @@ function CourseCard({ title, teacher, image }) {
           color: "#3399cc",
         },
       };
-
-      console.log("Razorpay Options:", options);
 
       if (!window.Razorpay) {
         alert("Razorpay SDK Not Loaded");
