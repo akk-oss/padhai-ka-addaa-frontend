@@ -118,7 +118,7 @@ function Login() {
                             Forgot Password ?
                         </a>
 
-                        <a href="/Register">
+                        <a href="/register">
                             SignUp
                         </a>
 
