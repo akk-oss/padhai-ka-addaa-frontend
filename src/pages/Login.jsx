@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../services/authService";
+import "./login.css";
 
 function Login() {
 
@@ -22,15 +23,10 @@ function Login() {
 
             console.log("Login Response:", response);
 
-            // Save Token
             localStorage.setItem("token", response.token);
-
-            // Save Role
             localStorage.setItem("role", response.role);
 
             alert("Login Successful");
-
-            // Redirect According to Role
 
             if (response.role === "ADMIN") {
 
@@ -58,60 +54,77 @@ function Login() {
 
     return (
 
-        <div className="container mt-5">
+        <div className="login_form_container">
 
-            <div className="row justify-content-center">
+            <div className="login_form">
 
-                <div className="col-md-5">
+                <form onSubmit={handleLogin}>
 
-                    <div className="card shadow p-4">
+                    <h2>Login</h2>
 
-                        <h2 className="text-center mb-4">
-                            Login
-                        </h2>
+                    <div className="input_group">
 
-                        <form onSubmit={handleLogin}>
+                        <i className="fa fa-user"></i>
 
-                            <div className="mb-3">
-
-                                <label>Email</label>
-
-                                <input
-                                    type="email"
-                                    className="form-control"
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                    required
-                                />
-
-                            </div>
-
-                            <div className="mb-3">
-
-                                <label>Password</label>
-
-                                <input
-                                    type="password"
-                                    className="form-control"
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                    required
-                                />
-
-                            </div>
-
-                            <button
-                                type="submit"
-                                className="btn btn-primary w-100"
-                            >
-                                Login
-                            </button>
-
-                        </form>
+                        <input
+                            type="email"
+                            placeholder="Username"
+                            className="input_text"
+                            autoComplete="off"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                        />
 
                     </div>
 
-                </div>
+                    <div className="input_group">
+
+                        <i className="fa fa-unlock-alt"></i>
+
+                        <input
+                            type="password"
+                            placeholder="Password"
+                            className="input_text"
+                            autoComplete="off"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
+
+                    </div>
+
+                    <div className="button_group" id="login_button">
+
+                        <input
+                            type="submit"
+                            value="Submit"
+                            className="btn btn-success"
+                            style={{
+                                width: "300px",
+                                height: "40px",
+                                borderRadius: "50px",
+                                fontSize: "20px",
+                                color: "#00ccff52",
+                                background: "none"
+                            }}
+                        />
+
+                    </div>
+
+                    <div className="fotter">
+
+                        <a href="/forgot-password">
+                            Forgot Password ?
+                        </a>
+
+                        <a href="/register">
+                            SignUp
+                        </a>
+
+                    </div>
+
+                </form>
 
             </div>
 
