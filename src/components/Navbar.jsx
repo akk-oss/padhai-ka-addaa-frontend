@@ -4,7 +4,8 @@ import "../assets/css/navbar.css";
 
 
 function Navbar({ simple = false, toggleSidebar }) {
-
+const token = localStorage.getItem("token");
+const fullName = localStorage.getItem("fullName");
   const navigate = useNavigate();
   if (simple) {
   return (
@@ -20,6 +21,104 @@ function Navbar({ simple = false, toggleSidebar }) {
             to="/"
             className="d-flex align-items-center text-decoration-none"
           >
+            {/* Mobile Right */}
+
+<div className="mobile-right d-flex d-lg-none">
+
+  {!token ? (
+    <>
+      <Link
+        to="/login"
+        className="btn btn-sm btn-outline-primary me-2"
+      >
+        Login
+      </Link>
+
+      <Link
+        to="/register"
+        className="btn btn-sm btn-primary"
+      >
+        Register
+      </Link>
+    </>
+  ) : (
+
+    <div className="dropdown">
+
+      <img
+        src="/images/user.png"
+        alt="Profile"
+        className="mobile-profile"
+        data-bs-toggle="dropdown"
+      />
+
+      <ul className="dropdown-menu dropdown-menu-end">
+
+        <li>
+          <h6 className="dropdown-header">
+            {fullName}
+          </h6>
+        </li>
+
+        <li>
+          <Link
+            className="dropdown-item"
+            to="/student/dashboard"
+          >
+            Dashboard
+          </Link>
+        </li>
+
+        <li>
+          <Link
+            className="dropdown-item"
+            to="/profile"
+          >
+            Profile
+          </Link>
+        </li>
+
+        <li>
+          <Link
+            className="dropdown-item"
+            to="/my-courses"
+          >
+            My Courses
+          </Link>
+        </li>
+
+        <li>
+          <Link
+            className="dropdown-item"
+            to="/payments"
+          >
+            Payments
+          </Link>
+        </li>
+
+        <li>
+          <hr className="dropdown-divider"/>
+        </li>
+
+        <li>
+          <button
+            className="dropdown-item text-danger"
+            onClick={()=>{
+              localStorage.clear();
+              navigate("/login");
+            }}
+          >
+            Logout
+          </button>
+        </li>
+
+      </ul>
+
+    </div>
+
+  )}
+
+</div>
             <img
               src="/images/logo.png"
               alt="Logo"
