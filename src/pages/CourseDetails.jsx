@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import { getCourseById } from "../services/courseService";
 import { enrollCourse } from "../services/enrollmentService";
 
@@ -11,7 +12,7 @@ import "../assets/css/courseDetails.css";
 function CourseDetails() {
 
     const { id } = useParams();
-
+const navigate = useNavigate();
     const [course, setCourse] = useState(null);
     const [showSidebar, setShowSidebar] = useState(false);
 
@@ -29,15 +30,81 @@ function CourseDetails() {
         }
     };
 
-    const handleEnroll = async () => {
-        try {
-            await enrollCourse(course.id);
-            alert("Enrollment Successful");
-        } catch (error) {
-            console.log(error);
-            alert("Enrollment Failed");
-        }
-    };
+   const handleEnroll = async () => {
+
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+        alert("Please Login First");
+        navigate("/login");
+        return;
+    }
+
+    try {
+
+        const response = await axios.post(
+            "https://padhai-ka-addaa.onrender.com/api/payment/create-order",
+            {},
+            {
+                headers: {
+                    Authorization: "Bearer " + token
+                }
+            }
+        );
+
+        const data = response.data;
+
+        const options = {
+
+            key: "rzp_live_TAHPsInsNF3Z68",
+
+            amount: data.amount,
+
+            currency: data.currency,
+
+            order_id: data.id,
+
+            name: "Padhai Ka Addaa",
+
+            description: course.title,
+
+            handler: async function () {
+
+                try {
+
+                    await enrollCourse(course.id);
+
+                    alert("Enrollment Successful");
+
+                } catch (error) {
+
+                    console.log(error);
+
+                    alert("Enrollment Failed");
+
+                }
+
+            },
+
+            theme: {
+                color: "#3399cc"
+            }
+
+        };
+
+        const razorpay = new window.Razorpay(options);
+
+        razorpay.open();
+
+    } catch (error) {
+
+        console.log(error);
+
+        alert("Payment Failed");
+
+    }
+
+};
 
     if (!course) {
         return (
