@@ -118,9 +118,9 @@ function Login() {
                             Forgot Password ?
                         </a>
 
-                       <link onClick={() => navigate("/register")}>
-    Sign Up
-</link>
+                       <Link to="/register">
+    Create New Account
+</Link>
 
                     </div>
 
