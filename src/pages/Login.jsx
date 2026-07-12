@@ -119,7 +119,7 @@ function Login() {
                         </a>
 
                        <Link to="/register">
-    Create New Account
+     Sign Up
 </Link>
 
                     </div>
