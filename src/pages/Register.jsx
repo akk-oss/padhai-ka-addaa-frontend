@@ -7,11 +7,12 @@ function Register() {
 
   const navigate = useNavigate();
 
-  const [formData, setFormData] = useState({
+ const [formData, setFormData] = useState({
     fullName: "",
     email: "",
+    phoneNumber: "",
     password: "",
-    role: "STUDENT"
+    confirmPassword: ""
 });
 
   const handleChange = (e) => {
@@ -100,18 +101,18 @@ function Register() {
 <div className="mb-3">
 
     <label className="form-label">
-        Register As
+        Phone Number
     </label>
 
-    <select
-        className="form-select"
-        name="role"
-        value={formData.role}
+    <input
+        type="tel"
+        className="form-control"
+        name="phoneNumber"
+        placeholder="Enter Phone Number"
+        value={formData.phoneNumber}
         onChange={handleChange}
-    >
-        <option value="STUDENT">Student</option>
-        <option value="TEACHER">Teacher</option>
-    </select>
+        required
+    />
 
 </div>
 
