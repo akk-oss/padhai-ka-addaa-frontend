@@ -118,9 +118,9 @@ function Login() {
                             Forgot Password ?
                         </a>
 
-                        <a href="/register">
-                            SignUp
-                        </a>
+                       <button onClick={() => navigate("/register")}>
+    Sign Up
+</button>
 
                     </div>
 
