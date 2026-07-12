@@ -18,6 +18,7 @@ import TeacherDashboard from "./dashboard/TeacherDashboard";
 import AdminDashboard from "./dashboard/AdminDashboard";
 import UploadNotes from "./pages/UploadNotes";
 import AdminUsers from "./pages/AdminUsers";
+import Profile from "./pages/Profile";
 function App() {
   return (
     <BrowserRouter>
@@ -87,6 +88,10 @@ function App() {
 <Route
     path="/mock-tests"
     element={<MockTests />}
+/>
+<Route
+    path="/profile"
+    element={<Profile />}
 />
       </Routes>
     
