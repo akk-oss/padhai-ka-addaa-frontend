@@ -19,6 +19,7 @@ import AdminDashboard from "./dashboard/AdminDashboard";
 import UploadNotes from "./pages/UploadNotes";
 import AdminUsers from "./pages/AdminUsers";
 import Profile from "./pages/Profile";
+import ResumeBuilder from "./pages/ResumeBuilder";
 function App() {
   return (
     <BrowserRouter>
@@ -88,6 +89,10 @@ function App() {
 <Route
     path="/mock-tests"
     element={<MockTests />}
+/>
+<Route
+  path="/resume-builder"
+  element={<ResumeBuilder />}
 />
 <Route
     path="/profile"

@@ -88,7 +88,7 @@ function Navbar({ simple = false, toggleSidebar }) {
 
           <div>
 
-            <h5>PadhAI Ka Adda</h5>
+            <h5>PadhAI Ka Addaa</h5>
 
             <small>Learn. Practice. Succeed.</small>
 
