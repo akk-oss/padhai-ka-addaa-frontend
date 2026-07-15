@@ -20,6 +20,7 @@ import UploadNotes from "./pages/UploadNotes";
 import AdminUsers from "./pages/AdminUsers";
 import Profile from "./pages/Profile";
 import ResumeBuilder from "./pages/ResumeBuilder";
+import AboutUs from "./pages/AboutUs";
 function App() {
   return (
     <BrowserRouter>
@@ -98,6 +99,7 @@ function App() {
     path="/profile"
     element={<Profile />}
 />
+<Route path="/about" element={<AboutUs />} />
       </Routes>
     
     </BrowserRouter>
