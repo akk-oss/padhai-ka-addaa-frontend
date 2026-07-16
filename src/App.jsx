@@ -21,6 +21,7 @@ import AdminUsers from "./pages/AdminUsers";
 import Profile from "./pages/Profile";
 import ResumeBuilder from "./pages/ResumeBuilder";
 import AboutUs from "./pages/AboutUs";
+import LiveClasses from "./pages/LiveClasses";
 function App() {
   return (
     <BrowserRouter>
@@ -100,6 +101,7 @@ function App() {
     element={<Profile />}
 />
 <Route path="/about" element={<AboutUs />} />
+<Route path="/live-classes" element={<LiveClasses />} />
       </Routes>
     
     </BrowserRouter>

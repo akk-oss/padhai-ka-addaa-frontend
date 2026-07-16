@@ -1,0 +1,115 @@
+.live-page{
+
+padding:40px;
+
+background:#f5f7fb;
+
+min-height:100vh;
+
+}
+
+.live-page h1{
+
+text-align:center;
+
+margin-bottom:30px;
+
+color:#0d6efd;
+
+}
+
+.live-grid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+
+gap:25px;
+
+}
+
+.live-card{
+
+background:white;
+
+padding:25px;
+
+border-radius:12px;
+
+box-shadow:0 5px 15px rgba(0,0,0,.15);
+
+transition:.3s;
+
+}
+
+.live-card:hover{
+
+transform:translateY(-5px);
+
+}
+
+.live-card h2{
+
+margin:15px 0;
+
+}
+
+.live-card p{
+
+margin:10px 0;
+
+}
+
+.live-card button{
+
+width:100%;
+
+padding:12px;
+
+background:#0d6efd;
+
+color:white;
+
+border:none;
+
+border-radius:8px;
+
+cursor:pointer;
+
+margin-top:20px;
+
+}
+
+.live-card button:hover{
+
+background:#084298;
+
+}
+
+.live-badge{
+
+background:red;
+
+color:white;
+
+padding:5px 10px;
+
+border-radius:5px;
+
+font-size:13px;
+
+}
+
+.upcoming{
+
+background:orange;
+
+color:white;
+
+padding:5px 10px;
+
+border-radius:5px;
+
+font-size:13px;
+
+}
