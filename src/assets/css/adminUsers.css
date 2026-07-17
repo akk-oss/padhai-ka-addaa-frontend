@@ -2,74 +2,118 @@
     display:flex;
     justify-content:space-between;
     align-items:center;
-    margin-bottom:30px;
+    margin-bottom:25px;
+    flex-wrap:wrap;
+    gap:15px;
 }
 
 .users-header h2{
+    font-size:28px;
     font-weight:700;
-    margin-bottom:5px;
+    margin:0;
 }
 
 .users-header p{
-    color:#777;
+    color:#666;
+    margin-top:5px;
 }
 
 .users-table{
     background:#fff;
-    border-radius:20px;
+    border-radius:12px;
     padding:20px;
-    box-shadow:0 8px 20px rgba(0,0,0,.08);
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+    overflow-x:auto;
+}
+
+.user-name{
+    display:flex;
+    align-items:center;
+    gap:10px;
 }
 
 .avatar{
     width:42px;
     height:42px;
     border-radius:50%;
-    background:#2563eb;
+    background:#0d6efd;
     color:#fff;
     display:flex;
+    align-items:center;
     justify-content:center;
-    align-items:center;
-    font-weight:700;
-    margin-right:12px;
-}
-
-.user-name{
-    display:flex;
-    align-items:center;
+    font-weight:bold;
+    font-size:18px;
 }
 
 .role{
     display:inline-flex;
     align-items:center;
-    gap:8px;
-    padding:8px 15px;
+    gap:6px;
+    padding:6px 14px;
     border-radius:30px;
     font-size:13px;
     font-weight:600;
 }
 
 .role.student{
-    background:#dcfce7;
-    color:#16a34a;
+    background:#e8f5e9;
+    color:#2e7d32;
 }
 
 .role.teacher{
-    background:#fef3c7;
-    color:#ca8a04;
+    background:#fff3cd;
+    color:#856404;
 }
 
 .role.admin{
-    background:#fee2e2;
-    color:#dc2626;
+    background:#fde2e2;
+    color:#c62828;
 }
 
-.table td,
 .table th{
+    background:#f8f9fa;
+    font-weight:700;
+}
+
+.table td{
     vertical-align:middle;
 }
 
-.btn-sm{
+.btn-warning,
+.btn-danger{
+    width:38px;
+    height:38px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.modal-content{
+    border-radius:15px;
+    border:none;
+}
+
+.modal-header{
+    background:#0d6efd;
+    color:white;
+}
+
+.modal-header .btn-close{
+    filter:invert(1);
+}
+
+.modal-body input,
+.modal-body select{
+    height:48px;
+    border-radius:10px;
+}
+
+.modal-footer{
+    border-top:none;
+}
+
+.modal-footer .btn{
+    min-width:120px;
     border-radius:8px;
 }
 
@@ -78,11 +122,18 @@
 .users-header{
     flex-direction:column;
     align-items:flex-start;
-    gap:15px;
 }
 
-.users-table{
-    overflow-x:auto;
+.users-header button{
+    width:100%;
+}
+
+.table{
+    min-width:700px;
+}
+
+.modal-dialog{
+    margin:15px;
 }
 
 }
