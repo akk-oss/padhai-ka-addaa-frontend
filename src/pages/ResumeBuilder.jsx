@@ -3,7 +3,6 @@ import ResumePreview from "../components/ResumePreview";
 import "../assets/css/resumeBuilder.css";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
-import { useState } from "react";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 
