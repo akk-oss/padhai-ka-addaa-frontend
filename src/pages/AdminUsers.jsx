@@ -60,23 +60,33 @@ const deleteUser = async (id) => {
     alert("Delete failed.");
   }
 };
-await axios.post(
-    "https://padhai-ka-addaa.onrender.com/api/admin/users",
-    {
+const addUser = async () => {
+  try {
+    const token = localStorage.getItem("token");
+
+    await axios.post(
+      "https://padhai-ka-addaa.onrender.com/api/admin/users",
+      {
         fullName,
         email,
         phoneNumber,
         password,
-        role
-    },
-    {
+        role,
+      },
+      {
         headers: {
-            Authorization: `Bearer ${token}`
-        }
-    }
-);
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
-loadUsers();
+    loadUsers();
+    alert("User added successfully");
+  } catch (error) {
+    console.error(error);
+    alert("Add User failed");
+  }
+};
 
   const getRoleIcon = (role) => {
     if (role === "ADMIN") return <FaUserShield />;
