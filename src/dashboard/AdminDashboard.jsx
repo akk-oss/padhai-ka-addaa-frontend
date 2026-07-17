@@ -1,7 +1,42 @@
 import DashboardLayout from "../layouts/DashboardLayout";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
+
+
 
 function AdminDashboard() {
+    const [stats, setStats] = useState({
+    totalStudents: 0,
+    totalTeachers: 0,
+    totalCourses: 0,
+    totalLessons: 0,
+});
+
+useEffect(() => {
+    loadDashboard();
+}, []);
+
+const loadDashboard = async () => {
+    try {
+
+        const token = localStorage.getItem("token");
+
+        const response = await axios.get(
+            "https://padhai-ka-addaa.onrender.com/api/dashboard/admin",
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        );
+
+        setStats(response.data);
+
+    } catch (error) {
+        console.error(error);
+    }
+};
 
     return (
 
@@ -28,7 +63,7 @@ function AdminDashboard() {
                     <div className="card shadow border-0 rounded-4 text-center p-4 h-100">
 
                         <h1 className="text-primary display-5 fw-bold">
-                            520
+                           {stats.totalStudents}
                         </h1>
 
                         <h5>Total Students</h5>
@@ -42,7 +77,7 @@ function AdminDashboard() {
                     <div className="card shadow border-0 rounded-4 text-center p-4 h-100">
 
                         <h1 className="text-success display-5 fw-bold">
-                            25
+                       {stats.totalTeachers}
                         </h1>
 
                         <h5>Total Teachers</h5>
@@ -56,7 +91,7 @@ function AdminDashboard() {
                     <div className="card shadow border-0 rounded-4 text-center p-4 h-100">
 
                         <h1 className="text-warning display-5 fw-bold">
-                            48
+                          {stats.totalCourses}
                         </h1>
 
                         <h5>Total Courses</h5>
@@ -70,7 +105,7 @@ function AdminDashboard() {
                     <div className="card shadow border-0 rounded-4 text-center p-4 h-100">
 
                         <h1 className="text-danger display-5 fw-bold">
-                            120
+                           {stats.totalLessons}
                         </h1>
 
                         <h5>Total Lessons</h5>
@@ -288,5 +323,6 @@ function AdminDashboard() {
     );
 
 }
+
 
 export default AdminDashboard;
