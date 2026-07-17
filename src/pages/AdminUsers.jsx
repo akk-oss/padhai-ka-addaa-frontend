@@ -60,6 +60,23 @@ const deleteUser = async (id) => {
     alert("Delete failed.");
   }
 };
+await axios.post(
+    "https://padhai-ka-addaa.onrender.com/api/admin/users",
+    {
+        fullName,
+        email,
+        phoneNumber,
+        password,
+        role
+    },
+    {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+);
+
+loadUsers();
 
   const getRoleIcon = (role) => {
     if (role === "ADMIN") return <FaUserShield />;
