@@ -25,6 +25,7 @@ import LiveClasses from "./pages/LiveClasses";
 import Blog from "./pages/Blog";
 import PreviousPapers from "./pages/PreviousPapers";
 import Community from "./pages/Community";
+import Practice from "./pages/Practice";
 function App() {
   return (
     <BrowserRouter>
@@ -108,6 +109,7 @@ function App() {
 <Route path="/blog" element={<Blog />} />
 <Route path="/previous-papers" element={<PreviousPapers />} />
 <Route path="/community" element={<Community />} />
+<Route path="/practice" element={<Practice />} />
       </Routes>
     
     </BrowserRouter>
