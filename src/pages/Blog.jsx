@@ -1,11 +1,17 @@
+import { useState } from "react";
 import "../assets/css/blog.css";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 
 function Blog() {
 
-  const blogs = [
+  const [showSidebar, setShowSidebar] = useState(false);
 
+  const toggleSidebar = () => {
+    setShowSidebar(!showSidebar);
+  };
+
+  const blogs = [
     {
       id: 1,
       image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3",
@@ -15,7 +21,6 @@ function Blog() {
       description:
         "Prepare yourself with the most frequently asked Java interview questions and answers."
     },
-
     {
       id: 2,
       image: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4",
@@ -25,7 +30,6 @@ function Blog() {
       description:
         "Learn React from beginner to advanced with this complete roadmap."
     },
-
     {
       id: 3,
       image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
@@ -35,16 +39,15 @@ function Blog() {
       description:
         "Everything you need to know to build REST APIs using Spring Boot."
     }
-
   ];
 
   return (
     <>
-      <Navbar />
+      <Navbar toggleSidebar={toggleSidebar} />
 
       <div className="dashboard-container">
 
-        <Sidebar />
+        <Sidebar show={showSidebar} />
 
         <div className="dashboard-content">
 

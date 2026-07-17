@@ -1,8 +1,15 @@
+import { useState } from "react";
 import "../assets/css/liveClasses.css";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 
 function LiveClasses() {
+
+  const [showSidebar, setShowSidebar] = useState(false);
+
+  const toggleSidebar = () => {
+    setShowSidebar(!showSidebar);
+  };
 
   const classes = [
     {
@@ -12,7 +19,7 @@ function LiveClasses() {
       date: "20 July 2026",
       time: "7:00 PM",
       live: true,
-      link: "https://meet.google.com/"
+      link: "https://meet.google.com/",
     },
     {
       id: 2,
@@ -21,17 +28,17 @@ function LiveClasses() {
       date: "21 July 2026",
       time: "8:00 PM",
       live: false,
-      link: "https://meet.google.com/"
-    }
+      link: "https://meet.google.com/",
+    },
   ];
 
   return (
     <>
-      <Navbar />
+      <Navbar toggleSidebar={toggleSidebar} />
 
       <div className="dashboard-container">
 
-        <Sidebar />
+        <Sidebar show={showSidebar} />
 
         <div className="dashboard-content">
 

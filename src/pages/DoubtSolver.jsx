@@ -5,8 +5,13 @@ import "../assets/css/doubtSolver.css";
 
 function DoubtSolver() {
 
+  const [showSidebar, setShowSidebar] = useState(false);
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
+
+  const toggleSidebar = () => {
+    setShowSidebar(!showSidebar);
+  };
 
   const askAI = () => {
 
@@ -23,11 +28,11 @@ function DoubtSolver() {
 
   return (
     <>
-      <Navbar />
+      <Navbar toggleSidebar={toggleSidebar} />
 
       <div className="dashboard-container">
 
-        <Sidebar />
+        <Sidebar show={showSidebar} />
 
         <div className="dashboard-content">
 

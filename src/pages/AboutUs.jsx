@@ -1,15 +1,23 @@
+import { useState } from "react";
 import "../assets/css/AboutUs.css";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 
 function AboutUs() {
+
+  const [showSidebar, setShowSidebar] = useState(false);
+
+  const toggleSidebar = () => {
+    setShowSidebar(!showSidebar);
+  };
+
   return (
     <>
-      <Navbar />
+      <Navbar toggleSidebar={toggleSidebar} />
 
       <div className="dashboard-container">
 
-        <Sidebar />
+        <Sidebar show={showSidebar} />
 
         <div className="dashboard-content">
 

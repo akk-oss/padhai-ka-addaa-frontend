@@ -1,8 +1,15 @@
+import { useState } from "react";
 import "../assets/css/community.css";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 
 function Community() {
+
+  const [showSidebar, setShowSidebar] = useState(false);
+
+  const toggleSidebar = () => {
+    setShowSidebar(!showSidebar);
+  };
 
   const posts = [
     {
@@ -10,31 +17,31 @@ function Community() {
       name: "Rahul Kumar",
       course: "Java Programming",
       question: "Can anyone explain Java Multithreading with an example?",
-      time: "2 hours ago"
+      time: "2 hours ago",
     },
     {
       id: 2,
       name: "Priya Sharma",
       course: "React JS",
       question: "How do I use useEffect() properly?",
-      time: "5 hours ago"
+      time: "5 hours ago",
     },
     {
       id: 3,
       name: "Amit Singh",
       course: "Spring Boot",
       question: "How can I connect Spring Boot with MySQL?",
-      time: "Yesterday"
-    }
+      time: "Yesterday",
+    },
   ];
 
   return (
     <>
-      <Navbar />
+      <Navbar toggleSidebar={toggleSidebar} />
 
       <div className="dashboard-container">
 
-        <Sidebar />
+        <Sidebar show={showSidebar} />
 
         <div className="dashboard-content">
 
@@ -92,7 +99,6 @@ function Community() {
         </div>
 
       </div>
-
     </>
   );
 }

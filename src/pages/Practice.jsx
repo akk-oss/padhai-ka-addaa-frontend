@@ -1,8 +1,15 @@
+import { useState } from "react";
 import "../assets/css/practice.css";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 
 function Practice() {
+
+  const [showSidebar, setShowSidebar] = useState(false);
+
+  const toggleSidebar = () => {
+    setShowSidebar(!showSidebar);
+  };
 
   const practiceSets = [
     {
@@ -10,52 +17,52 @@ function Practice() {
       title: "Java Programming",
       questions: 50,
       level: "Beginner",
-      duration: "30 Minutes"
+      duration: "30 Minutes",
     },
     {
       id: 2,
       title: "React JS",
       questions: 40,
       level: "Intermediate",
-      duration: "25 Minutes"
+      duration: "25 Minutes",
     },
     {
       id: 3,
       title: "Spring Boot",
       questions: 35,
       level: "Advanced",
-      duration: "30 Minutes"
+      duration: "30 Minutes",
     },
     {
       id: 4,
       title: "DBMS",
       questions: 60,
       level: "Beginner",
-      duration: "40 Minutes"
+      duration: "40 Minutes",
     },
     {
       id: 5,
       title: "Operating System",
       questions: 45,
       level: "Intermediate",
-      duration: "30 Minutes"
+      duration: "30 Minutes",
     },
     {
       id: 6,
       title: "Computer Network",
       questions: 50,
       level: "Advanced",
-      duration: "35 Minutes"
-    }
+      duration: "35 Minutes",
+    },
   ];
 
   return (
     <>
-      <Navbar />
+      <Navbar toggleSidebar={toggleSidebar} />
 
       <div className="dashboard-container">
 
-        <Sidebar />
+        <Sidebar show={showSidebar} />
 
         <div className="dashboard-content">
 
@@ -72,12 +79,9 @@ function Practice() {
             <div className="practice-grid">
 
               {practiceSets.map((item) => (
-
                 <div className="practice-card" key={item.id}>
 
-                  <div className="practice-icon">
-                    📝
-                  </div>
+                  <div className="practice-icon">📝</div>
 
                   <h2>{item.title}</h2>
 
@@ -93,12 +97,9 @@ function Practice() {
                     <strong>Duration:</strong> {item.duration}
                   </p>
 
-                  <button>
-                    Start Practice
-                  </button>
+                  <button>Start Practice</button>
 
                 </div>
-
               ))}
 
             </div>
@@ -108,7 +109,6 @@ function Practice() {
         </div>
 
       </div>
-
     </>
   );
 }

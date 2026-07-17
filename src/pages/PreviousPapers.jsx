@@ -1,8 +1,15 @@
+import { useState } from "react";
 import "../assets/css/previousPapers.css";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 
 function PreviousPapers() {
+
+  const [showSidebar, setShowSidebar] = useState(false);
+
+  const toggleSidebar = () => {
+    setShowSidebar(!showSidebar);
+  };
 
   const papers = [
     {
@@ -11,7 +18,7 @@ function PreviousPapers() {
       year: "2025",
       semester: "5th Semester",
       university: "AKTU",
-      pdf: "#"
+      pdf: "#",
     },
     {
       id: 2,
@@ -19,7 +26,7 @@ function PreviousPapers() {
       year: "2024",
       semester: "4th Semester",
       university: "AKTU",
-      pdf: "#"
+      pdf: "#",
     },
     {
       id: 3,
@@ -27,7 +34,7 @@ function PreviousPapers() {
       year: "2023",
       semester: "5th Semester",
       university: "AKTU",
-      pdf: "#"
+      pdf: "#",
     },
     {
       id: 4,
@@ -35,17 +42,17 @@ function PreviousPapers() {
       year: "2025",
       semester: "6th Semester",
       university: "AKTU",
-      pdf: "#"
-    }
+      pdf: "#",
+    },
   ];
 
   return (
     <>
-      <Navbar />
+      <Navbar toggleSidebar={toggleSidebar} />
 
       <div className="dashboard-container">
 
-        <Sidebar />
+        <Sidebar show={showSidebar} />
 
         <div className="dashboard-content">
 
@@ -58,14 +65,10 @@ function PreviousPapers() {
             </p>
 
             <div className="paper-grid">
-
               {papers.map((paper) => (
-
                 <div className="paper-card" key={paper.id}>
 
-                  <div className="paper-icon">
-                    📄
-                  </div>
+                  <div className="paper-icon">📄</div>
 
                   <h2>{paper.subject}</h2>
 
@@ -86,15 +89,11 @@ function PreviousPapers() {
                     target="_blank"
                     rel="noreferrer"
                   >
-                    <button>
-                      Download PDF
-                    </button>
+                    <button>Download PDF</button>
                   </a>
 
                 </div>
-
               ))}
-
             </div>
 
           </div>
@@ -102,7 +101,6 @@ function PreviousPapers() {
         </div>
 
       </div>
-
     </>
   );
 }
