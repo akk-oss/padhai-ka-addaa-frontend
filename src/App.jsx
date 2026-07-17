@@ -23,6 +23,7 @@ import ResumeBuilder from "./pages/ResumeBuilder";
 import AboutUs from "./pages/AboutUs";
 import LiveClasses from "./pages/LiveClasses";
 import Blog from "./pages/Blog";
+import PreviousPapers from "./pages/PreviousPapers";
 function App() {
   return (
     <BrowserRouter>
@@ -104,6 +105,7 @@ function App() {
 <Route path="/about" element={<AboutUs />} />
 <Route path="/live-classes" element={<LiveClasses />} />
 <Route path="/blog" element={<Blog />} />
+<Route path="/previous-papers" element={<PreviousPapers />} />
       </Routes>
     
     </BrowserRouter>
