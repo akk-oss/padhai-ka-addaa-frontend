@@ -24,6 +24,7 @@ import AboutUs from "./pages/AboutUs";
 import LiveClasses from "./pages/LiveClasses";
 import Blog from "./pages/Blog";
 import PreviousPapers from "./pages/PreviousPapers";
+import Community from "./pages/Community";
 function App() {
   return (
     <BrowserRouter>
@@ -106,6 +107,7 @@ function App() {
 <Route path="/live-classes" element={<LiveClasses />} />
 <Route path="/blog" element={<Blog />} />
 <Route path="/previous-papers" element={<PreviousPapers />} />
+<Route path="/community" element={<Community />} />
       </Routes>
     
     </BrowserRouter>
