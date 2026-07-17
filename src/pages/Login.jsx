@@ -20,13 +20,13 @@ function Login() {
 
       console.log("Login Response:", response);
 
-     localStorage.setItem("token", response.token);
-localStorage.setItem("role", response.role);
-localStorage.setItem("fullName", response.fullName);
-localStorage.setItem("email", response.email);
-localStorage.setItem("userId", response.id);
+     sessionStorage.setItem("token", response.token);
+sessionStorage.setItem("role", response.role);
+sessionStorage.setItem("fullName", response.fullName);
+sessionStorage.setItem("email", response.email);
+sessionStorage.setItem("userId", response.id);
 
-alert("Login Successful");
+      alert("Login Successful");
 
       if (response.role === "ADMIN") {
         navigate("/admin/dashboard");
@@ -36,15 +36,15 @@ alert("Login Successful");
         navigate("/student/dashboard");
       }
     } catch (error) {
-  console.log(error);
+      console.log(error);
 
-  const message =
-    error.response?.data?.message ||
-    error.response?.data ||
-    "Invalid Email or Password";
+      const message =
+        error.response?.data?.message ||
+        error.response?.data ||
+        "Invalid Email or Password";
 
-  alert(message);
-}
+      alert(message);
+    }
   };
 
   return (

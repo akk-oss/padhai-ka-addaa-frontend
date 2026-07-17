@@ -68,7 +68,7 @@ function StudentDashboard() {
 
                         👋 Welcome Back,
                         {" "}
-                        {localStorage.getItem("fullName") || "Student"}
+                        {sessionStorage.getItem("fullName") || "Student"}
 
                     </h2>
 

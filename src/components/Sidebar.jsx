@@ -22,18 +22,18 @@ import { FaUpload } from "react-icons/fa";
 function Sidebar({ show }) {
 
   const location = useLocation();
-  const role = localStorage.getItem("role");
+  const role = sessionStorage.getItem("role");
   const navigate = useNavigate();
 
   const isActive = (path) =>
     location.pathname === path ? "menu-item active" : "menu-item";
 
   const handleLogout = () => {
-localStorage.removeItem("token");
-localStorage.removeItem("role");
-localStorage.removeItem("user");
-localStorage.removeItem("fullName");
-localStorage.removeItem("email");
+sessionStorage.removeItem("token");
+sessionStorage.removeItem("role");
+sessionStorage.removeItem("user");
+sessionStorage.removeItem("fullName");
+sessionStorage.removeItem("email");
    
 
     // Login Page Redirect

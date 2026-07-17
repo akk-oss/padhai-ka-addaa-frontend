@@ -20,7 +20,7 @@ useEffect(() => {
 const loadDashboard = async () => {
     try {
 
-        const token = localStorage.getItem("token");
+        const token = sessionStorage.getItem("token");
 
         const response = await axios.get(
             "https://padhai-ka-addaa.onrender.com/api/dashboard/admin",

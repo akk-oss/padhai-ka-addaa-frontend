@@ -7,16 +7,14 @@ import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 
 function ResumeBuilder() {
-
   const [showSidebar, setShowSidebar] = useState(false);
 
-const toggleSidebar = () => {
-  setShowSidebar(!showSidebar);
-};
+  const toggleSidebar = () => {
+    setShowSidebar(!showSidebar);
+  };
   const [photo, setPhoto] = useState(null);
 
   const [form, setForm] = useState({
-
     fullName: "",
     profession: "",
     email: "",
@@ -30,32 +28,31 @@ const toggleSidebar = () => {
       {
         college: "",
         degree: "",
-        year: ""
-      }
+        year: "",
+      },
     ],
 
     experiences: [
       {
         company: "",
         position: "",
-        description: ""
-      }
+        description: "",
+      },
     ],
 
     projects: [
       {
         title: "",
         technology: "",
-        description: ""
-      }
+        description: "",
+      },
     ],
 
     skills: [""],
 
     languages: [""],
 
-    hobbies: [""]
-
+    hobbies: [""],
   });
 
   //=====================
@@ -63,15 +60,11 @@ const toggleSidebar = () => {
   //=====================
 
   const handleChange = (e) => {
-
     setForm({
-
       ...form,
 
-      [e.target.name]: e.target.value
-
+      [e.target.name]: e.target.value,
     });
-
   };
 
   //=====================
@@ -79,15 +72,11 @@ const toggleSidebar = () => {
   //=====================
 
   const handlePhoto = (e) => {
-
     const file = e.target.files[0];
 
     if (file) {
-
       setPhoto(URL.createObjectURL(file));
-
     }
-
   };
 
   //=====================
@@ -95,146 +84,114 @@ const toggleSidebar = () => {
   //=====================
 
   const addEducation = () => {
-
     setForm({
-
       ...form,
 
       educations: [
-
         ...form.educations,
 
         {
-
           college: "",
 
           degree: "",
 
-          year: ""
-
-        }
-
-      ]
-
+          year: "",
+        },
+      ],
     });
-
   };
 
   const handleEducation = (index, e) => {
-
     const data = [...form.educations];
 
     data[index][e.target.name] = e.target.value;
 
     setForm({
-
       ...form,
 
-      educations: data
-
+      educations: data,
     });
-
   };
   // Remove Education
-const removeEducation = (index) => {
+  const removeEducation = (index) => {
+    const list = [...form.educations];
 
-  const list = [...form.educations];
+    list.splice(index, 1);
 
-  list.splice(index, 1);
+    setForm({
+      ...form,
+      educations: list,
+    });
+  };
 
-  setForm({
-    ...form,
-    educations: list,
-  });
+  // Remove Experience
+  const removeExperience = (index) => {
+    const list = [...form.experiences];
 
-};
+    list.splice(index, 1);
 
-// Remove Experience
-const removeExperience = (index) => {
+    setForm({
+      ...form,
+      experiences: list,
+    });
+  };
 
-  const list = [...form.experiences];
+  // Remove Project
+  const removeProject = (index) => {
+    const list = [...form.projects];
 
-  list.splice(index, 1);
+    list.splice(index, 1);
 
-  setForm({
-    ...form,
-    experiences: list,
-  });
+    setForm({
+      ...form,
+      projects: list,
+    });
+  };
 
-};
+  // Remove Skill
+  const removeSkill = (index) => {
+    const list = [...form.skills];
 
-// Remove Project
-const removeProject = (index) => {
+    list.splice(index, 1);
 
-  const list = [...form.projects];
-
-  list.splice(index, 1);
-
-  setForm({
-    ...form,
-    projects: list,
-  });
-
-};
-
-// Remove Skill
-const removeSkill = (index) => {
-
-  const list = [...form.skills];
-
-  list.splice(index, 1);
-
-  setForm({
-    ...form,
-    skills: list,
-  });
-
-};
+    setForm({
+      ...form,
+      skills: list,
+    });
+  };
 
   //=====================
   // Experience
   //=====================
 
   const addExperience = () => {
-
     setForm({
-
       ...form,
 
       experiences: [
-
         ...form.experiences,
 
         {
-
           company: "",
 
           position: "",
 
-          description: ""
-
-        }
-
-      ]
-
+          description: "",
+        },
+      ],
     });
-
   };
 
   const handleExperience = (index, e) => {
-
     const data = [...form.experiences];
 
     data[index][e.target.name] = e.target.value;
 
     setForm({
-
       ...form,
 
-      experiences: data
-
+      experiences: data,
     });
-
   };
 
   //=====================
@@ -242,82 +199,56 @@ const removeSkill = (index) => {
   //=====================
 
   const addProject = () => {
-
     setForm({
-
       ...form,
 
       projects: [
-
         ...form.projects,
 
         {
-
           title: "",
 
           technology: "",
 
-          description: ""
-
-        }
-
-      ]
-
+          description: "",
+        },
+      ],
     });
-
   };
 
   const handleProject = (index, e) => {
-
     const data = [...form.projects];
 
     data[index][e.target.name] = e.target.value;
 
     setForm({
-
       ...form,
 
-      projects: data
-
+      projects: data,
     });
-
   };
-    //=====================
+  //=====================
   // Skills
   //=====================
 
   const addSkill = () => {
-
     setForm({
-
       ...form,
 
-      skills: [
-
-        ...form.skills,
-
-        ""
-
-      ]
-
+      skills: [...form.skills, ""],
     });
-
   };
 
   const handleSkill = (index, e) => {
-
     const data = [...form.skills];
 
     data[index] = e.target.value;
 
     setForm({
-
       ...form,
 
-      skills: data
-
+      skills: data,
     });
-
   };
 
   //=====================
@@ -325,37 +256,23 @@ const removeSkill = (index) => {
   //=====================
 
   const addLanguage = () => {
-
     setForm({
-
       ...form,
 
-      languages: [
-
-        ...form.languages,
-
-        ""
-
-      ]
-
+      languages: [...form.languages, ""],
     });
-
   };
 
   const handleLanguage = (index, e) => {
-
     const data = [...form.languages];
 
     data[index] = e.target.value;
 
     setForm({
-
       ...form,
 
-      languages: data
-
+      languages: data,
     });
-
   };
 
   //=====================
@@ -363,651 +280,506 @@ const removeSkill = (index) => {
   //=====================
 
   const addHobby = () => {
-
     setForm({
-
       ...form,
 
-      hobbies: [
-
-        ...form.hobbies,
-
-        ""
-
-      ]
-
+      hobbies: [...form.hobbies, ""],
     });
-
   };
 
   const handleHobby = (index, e) => {
-
     const data = [...form.hobbies];
 
     data[index] = e.target.value;
 
     setForm({
-
       ...form,
 
-      hobbies: data
-
+      hobbies: data,
     });
-
   };
   const downloadPDF = async () => {
+    const resume = document.getElementById("resume-preview");
 
-  const resume = document.getElementById("resume-preview");
+    const canvas = await html2canvas(resume, {
+      scale: 2,
 
-  const canvas = await html2canvas(resume, {
+      useCORS: true,
+    });
 
-    scale: 2,
+    const imgData = canvas.toDataURL("image/png");
 
-    useCORS: true
+    const pdf = new jsPDF("p", "mm", "a4");
 
-  });
+    const pdfWidth = 210;
 
-  const imgData = canvas.toDataURL("image/png");
+    const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
 
-  const pdf = new jsPDF("p","mm","a4");
+    pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
 
-  const pdfWidth = 210;
+    pdf.save("Resume.pdf");
+  };
+  const printResume = () => {
+    window.print();
+  };
+  const saveResume = () => {
+    sessionStorage.setItem(
+      "resume",
 
-  const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+      JSON.stringify(form),
+    );
 
-  pdf.addImage(
-    imgData,
-    "PNG",
-    0,
-    0,
-    pdfWidth,
-    pdfHeight
-  );
+    alert("Resume Saved Successfully");
+  };
+  return (
+    <>
+      <Navbar toggleSidebar={toggleSidebar} />
 
-  pdf.save("Resume.pdf");
+      <div className="dashboard-container">
+        <Sidebar show={showSidebar} />
 
-};
-const printResume = () => {
+        <div className="dashboard-content">
+          <div className="resume-page">
+            {/* ========================= */}
+            {/* LEFT SIDE */}
+            {/* ========================= */}
 
-  window.print();
+            <div className="resume-form">
+              <h2>Professional Resume Builder</h2>
 
-};
-const saveResume = () => {
+              {/* Personal Information */}
 
-  localStorage.setItem(
+              <div className="section">
+                <h3>Personal Information</h3>
 
-    "resume",
+                <input type="file" accept="image/*" onChange={handlePhoto} />
 
-    JSON.stringify(form)
+                <input
+                  type="text"
+                  placeholder="Full Name"
+                  name="fullName"
+                  onChange={handleChange}
+                />
 
-  );
+                <input
+                  type="text"
+                  placeholder="Profession"
+                  name="profession"
+                  onChange={handleChange}
+                />
 
-  alert("Resume Saved Successfully");
+                <input
+                  type="email"
+                  placeholder="Email"
+                  name="email"
+                  onChange={handleChange}
+                />
 
-};
-return (
-  <>
-    <Navbar toggleSidebar={toggleSidebar} />
+                <input
+                  type="text"
+                  placeholder="Phone"
+                  name="phone"
+                  onChange={handleChange}
+                />
 
-    <div className="dashboard-container">
+                <textarea
+                  placeholder="Address"
+                  name="address"
+                  onChange={handleChange}
+                />
 
-      <Sidebar show={showSidebar} />
+                <input
+                  type="text"
+                  placeholder="LinkedIn"
+                  name="linkedin"
+                  onChange={handleChange}
+                />
 
-      <div className="dashboard-content">
+                <input
+                  type="text"
+                  placeholder="GitHub"
+                  name="github"
+                  onChange={handleChange}
+                />
+              </div>
 
-        <div className="resume-page">
-      {/* ========================= */}
-      {/* LEFT SIDE */}
-      {/* ========================= */}
+              {/* About */}
 
-      <div className="resume-form">
+              <div className="section">
+                <h3>Career Objective</h3>
 
-        <h2>Professional Resume Builder</h2>
+                <textarea
+                  rows="5"
+                  placeholder="Write your objective..."
+                  name="about"
+                  onChange={handleChange}
+                />
+              </div>
 
-        {/* Personal Information */}
+              {/* Education */}
 
-        <div className="section">
+              <div className="section">
+                <div className="title">
+                  <h3>Education</h3>
 
-          <h3>Personal Information</h3>
+                  <button
+                    type="button"
+                    className="add-btn"
+                    onClick={addEducation}
+                  >
+                    + Add
+                  </button>
+                </div>
 
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handlePhoto}
-          />
+                {form.educations.map((edu, index) => (
+                  <div className="card-box" key={index}>
+                    <input
+                      placeholder="College"
+                      name="college"
+                      value={edu.college}
+                      onChange={(e) => handleEducation(index, e)}
+                    />
 
-          <input
-            type="text"
-            placeholder="Full Name"
-            name="fullName"
-            onChange={handleChange}
-          />
+                    <input
+                      placeholder="Degree"
+                      name="degree"
+                      value={edu.degree}
+                      onChange={(e) => handleEducation(index, e)}
+                    />
 
-          <input
-            type="text"
-            placeholder="Profession"
-            name="profession"
-            onChange={handleChange}
-          />
+                    <input
+                      placeholder="Year"
+                      name="year"
+                      value={edu.year}
+                      onChange={(e) => handleEducation(index, e)}
+                    />
 
-          <input
-            type="email"
-            placeholder="Email"
-            name="email"
-            onChange={handleChange}
-          />
+                    <button
+                      type="button"
+                      className="delete-btn"
+                      onClick={() => removeEducation(index)}
+                    >
+                      Remove
+                    </button>
+                  </div>
+                ))}
 
-          <input
-            type="text"
-            placeholder="Phone"
-            name="phone"
-            onChange={handleChange}
-          />
+                {form.educations.map((edu, index) => (
+                  <div className="card-box" key={index}>
+                    <input
+                      placeholder="College"
+                      name="college"
+                      value={edu.college}
+                      onChange={(e) => handleEducation(index, e)}
+                    />
 
-          <textarea
-            placeholder="Address"
-            name="address"
-            onChange={handleChange}
-          />
+                    <input
+                      placeholder="Degree"
+                      name="degree"
+                      value={edu.degree}
+                      onChange={(e) => handleEducation(index, e)}
+                    />
 
-          <input
-            type="text"
-            placeholder="LinkedIn"
-            name="linkedin"
-            onChange={handleChange}
-          />
+                    <input
+                      placeholder="Passing Year"
+                      name="year"
+                      value={edu.year}
+                      onChange={(e) => handleEducation(index, e)}
+                    />
+                  </div>
+                ))}
+              </div>
 
-          <input
-            type="text"
-            placeholder="GitHub"
-            name="github"
-            onChange={handleChange}
-          />
+              {/* Experience */}
 
-        </div>
+              <div className="section">
+                <div className="section">
+                  <div className="title">
+                    <h3>Experience</h3>
 
-        {/* About */}
+                    <button
+                      type="button"
+                      className="add-btn"
+                      onClick={addExperience}
+                    >
+                      + Add
+                    </button>
+                  </div>
 
-        <div className="section">
+                  {form.experiences.map((exp, index) => (
+                    <div className="card-box" key={index}>
+                      <input
+                        placeholder="Company"
+                        name="company"
+                        value={exp.company}
+                        onChange={(e) => handleExperience(index, e)}
+                      />
 
-          <h3>Career Objective</h3>
+                      <input
+                        placeholder="Position"
+                        name="position"
+                        value={exp.position}
+                        onChange={(e) => handleExperience(index, e)}
+                      />
 
-          <textarea
-            rows="5"
-            placeholder="Write your objective..."
-            name="about"
-            onChange={handleChange}
-          />
+                      <textarea
+                        rows="3"
+                        placeholder="Description"
+                        name="description"
+                        value={exp.description}
+                        onChange={(e) => handleExperience(index, e)}
+                      />
 
-        </div>
+                      <button
+                        type="button"
+                        className="delete-btn"
+                        onClick={() => removeExperience(index)}
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  ))}
+                </div>
 
-        {/* Education */}
+                {form.experiences.map((exp, index) => (
+                  <div className="card-box" key={index}>
+                    <input
+                      placeholder="Company"
+                      name="company"
+                      value={exp.company}
+                      onChange={(e) => handleExperience(index, e)}
+                    />
 
-        <div className="section">
+                    <input
+                      placeholder="Position"
+                      name="position"
+                      value={exp.position}
+                      onChange={(e) => handleExperience(index, e)}
+                    />
 
-          <div className="title">
-  <h3>Education</h3>
+                    <textarea
+                      rows="3"
+                      placeholder="Description"
+                      name="description"
+                      value={exp.description}
+                      onChange={(e) => handleExperience(index, e)}
+                    />
+                  </div>
+                ))}
+              </div>
+              {/* ========================= */}
+              {/* Projects */}
+              {/* ========================= */}
 
-  <button
-    type="button"
-    className="add-btn"
-    onClick={addEducation}
-  >
-    + Add
-  </button>
-</div>
+              <div className="section">
+                <div className="section">
+                  <div className="title">
+                    <h3>Projects</h3>
 
-{form.educations.map((edu, index) => (
+                    <button
+                      type="button"
+                      className="add-btn"
+                      onClick={addProject}
+                    >
+                      + Add
+                    </button>
+                  </div>
 
-  <div className="card-box" key={index}>
+                  {form.projects.map((project, index) => (
+                    <div className="card-box" key={index}>
+                      <input
+                        placeholder="Project Name"
+                        name="title"
+                        value={project.title}
+                        onChange={(e) => handleProject(index, e)}
+                      />
 
-    <input
-      placeholder="College"
-      name="college"
-      value={edu.college}
-      onChange={(e)=>handleEducation(index,e)}
-    />
+                      <input
+                        placeholder="Technology"
+                        name="technology"
+                        value={project.technology}
+                        onChange={(e) => handleProject(index, e)}
+                      />
 
-    <input
-      placeholder="Degree"
-      name="degree"
-      value={edu.degree}
-      onChange={(e)=>handleEducation(index,e)}
-    />
+                      <textarea
+                        rows="3"
+                        placeholder="Description"
+                        name="description"
+                        value={project.description}
+                        onChange={(e) => handleProject(index, e)}
+                      />
 
-    <input
-      placeholder="Year"
-      name="year"
-      value={edu.year}
-      onChange={(e)=>handleEducation(index,e)}
-    />
+                      <button
+                        type="button"
+                        className="delete-btn"
+                        onClick={() => removeProject(index)}
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  ))}
+                </div>
 
-    <button
-      type="button"
-      className="delete-btn"
-      onClick={()=>removeEducation(index)}
-    >
-      Remove
-    </button>
+                {form.projects.map((project, index) => (
+                  <div className="card-box" key={index}>
+                    <input
+                      type="text"
+                      placeholder="Project Title"
+                      name="title"
+                      value={project.title}
+                      onChange={(e) => handleProject(index, e)}
+                    />
 
-  </div>
+                    <input
+                      type="text"
+                      placeholder="Technology Used"
+                      name="technology"
+                      value={project.technology}
+                      onChange={(e) => handleProject(index, e)}
+                    />
 
-))}
+                    <textarea
+                      rows="3"
+                      placeholder="Project Description"
+                      name="description"
+                      value={project.description}
+                      onChange={(e) => handleProject(index, e)}
+                    />
+                  </div>
+                ))}
+              </div>
 
-          {form.educations.map((edu, index) => (
+              {/* ========================= */}
+              {/* Skills */}
+              {/* ========================= */}
 
-            <div className="card-box" key={index}>
+              <div className="section">
+                <div className="section">
+                  <div className="title">
+                    <h3>Skills</h3>
 
-              <input
-                placeholder="College"
-                name="college"
-                value={edu.college}
-                onChange={(e) =>
-                  handleEducation(index, e)
-                }
-              />
+                    <button
+                      type="button"
+                      className="add-btn"
+                      onClick={addSkill}
+                    >
+                      + Add
+                    </button>
+                  </div>
 
-              <input
-                placeholder="Degree"
-                name="degree"
-                value={edu.degree}
-                onChange={(e) =>
-                  handleEducation(index, e)
-                }
-              />
+                  {form.skills.map((skill, index) => (
+                    <div className="skill-row" key={index}>
+                      <input
+                        type="text"
+                        placeholder="Skill"
+                        value={skill}
+                        onChange={(e) => handleSkill(index, e)}
+                      />
 
-              <input
-                placeholder="Passing Year"
-                name="year"
-                value={edu.year}
-                onChange={(e) =>
-                  handleEducation(index, e)
-                }
-              />
+                      <button
+                        type="button"
+                        className="delete-skill"
+                        onClick={() => removeSkill(index)}
+                      >
+                        ✖
+                      </button>
+                    </div>
+                  ))}
+                </div>
 
+                {form.skills.map((skill, index) => (
+                  <input
+                    key={index}
+                    type="text"
+                    placeholder="Skill"
+                    value={skill}
+                    onChange={(e) => handleSkill(index, e)}
+                  />
+                ))}
+              </div>
+
+              {/* ========================= */}
+              {/* Languages */}
+              {/* ========================= */}
+
+              <div className="section">
+                <div className="title">
+                  <h3>Languages</h3>
+
+                  <button
+                    type="button"
+                    className="add-btn"
+                    onClick={addLanguage}
+                  >
+                    + Add
+                  </button>
+                </div>
+
+                {form.languages.map((language, index) => (
+                  <input
+                    key={index}
+                    type="text"
+                    placeholder="Language"
+                    value={language}
+                    onChange={(e) => handleLanguage(index, e)}
+                  />
+                ))}
+              </div>
+
+              {/* ========================= */}
+              {/* Hobbies */}
+              {/* ========================= */}
+
+              <div className="section">
+                <div className="title">
+                  <h3>Hobbies</h3>
+
+                  <button type="button" className="add-btn" onClick={addHobby}>
+                    + Add
+                  </button>
+                </div>
+
+                {form.hobbies.map((hobby, index) => (
+                  <input
+                    key={index}
+                    type="text"
+                    placeholder="Hobby"
+                    value={hobby}
+                    onChange={(e) => handleHobby(index, e)}
+                  />
+                ))}
+              </div>
             </div>
 
-          ))}
+            {/* ========================= */}
+            {/* Resume Preview */}
+            {/* ========================= */}
 
-        </div>
-
-        {/* Experience */}
-
-        <div className="section">
-
-          <div className="section">
-
-  <div className="title">
-
-    <h3>Experience</h3>
-
-    <button
-      type="button"
-      className="add-btn"
-      onClick={addExperience}
-    >
-      + Add
-    </button>
-
-  </div>
-
-  {form.experiences.map((exp, index) => (
-
-    <div className="card-box" key={index}>
-
-      <input
-        placeholder="Company"
-        name="company"
-        value={exp.company}
-        onChange={(e)=>handleExperience(index,e)}
-      />
-
-      <input
-        placeholder="Position"
-        name="position"
-        value={exp.position}
-        onChange={(e)=>handleExperience(index,e)}
-      />
-
-      <textarea
-        rows="3"
-        placeholder="Description"
-        name="description"
-        value={exp.description}
-        onChange={(e)=>handleExperience(index,e)}
-      />
-
-      <button
-        type="button"
-        className="delete-btn"
-        onClick={()=>removeExperience(index)}
-      >
-        Remove
-      </button>
-
-    </div>
-
-  ))}
-
-</div>
-
-          {form.experiences.map((exp, index) => (
-
-            <div className="card-box" key={index}>
-
-              <input
-                placeholder="Company"
-                name="company"
-                value={exp.company}
-                onChange={(e) =>
-                  handleExperience(index, e)
-                }
-              />
-
-              <input
-                placeholder="Position"
-                name="position"
-                value={exp.position}
-                onChange={(e) =>
-                  handleExperience(index, e)
-                }
-              />
-
-              <textarea
-                rows="3"
-                placeholder="Description"
-                name="description"
-                value={exp.description}
-                onChange={(e) =>
-                  handleExperience(index, e)
-                }
-              />
-
+            <div className="resume-preview-container">
+              <ResumePreview form={form} photo={photo} />
             </div>
+            <div className="resume-buttons">
+              <button
+                type="button"
+                className="download-btn"
+                onClick={downloadPDF}
+              >
+                📄 Download PDF
+              </button>
 
-          ))}
+              <button type="button" className="print-btn" onClick={printResume}>
+                🖨 Print
+              </button>
 
-        </div>
-                {/* ========================= */}
-        {/* Projects */}
-        {/* ========================= */}
-
-        <div className="section">
-
-          <div className="section">
-
-  <div className="title">
-
-    <h3>Projects</h3>
-
-    <button
-      type="button"
-      className="add-btn"
-      onClick={addProject}
-    >
-      + Add
-    </button>
-
-  </div>
-
-  {form.projects.map((project,index)=>(
-
-    <div className="card-box" key={index}>
-
-      <input
-        placeholder="Project Name"
-        name="title"
-        value={project.title}
-        onChange={(e)=>handleProject(index,e)}
-      />
-
-      <input
-        placeholder="Technology"
-        name="technology"
-        value={project.technology}
-        onChange={(e)=>handleProject(index,e)}
-      />
-
-      <textarea
-        rows="3"
-        placeholder="Description"
-        name="description"
-        value={project.description}
-        onChange={(e)=>handleProject(index,e)}
-      />
-
-      <button
-        type="button"
-        className="delete-btn"
-        onClick={()=>removeProject(index)}
-      >
-        Remove
-      </button>
-
-    </div>
-
-  ))}
-
-</div>
-
-          {form.projects.map((project, index) => (
-
-            <div className="card-box" key={index}>
-
-              <input
-                type="text"
-                placeholder="Project Title"
-                name="title"
-                value={project.title}
-                onChange={(e) => handleProject(index, e)}
-              />
-
-              <input
-                type="text"
-                placeholder="Technology Used"
-                name="technology"
-                value={project.technology}
-                onChange={(e) => handleProject(index, e)}
-              />
-
-              <textarea
-                rows="3"
-                placeholder="Project Description"
-                name="description"
-                value={project.description}
-                onChange={(e) => handleProject(index, e)}
-              />
-
+              <button type="button" className="save-btn" onClick={saveResume}>
+                💾 Save Resume
+              </button>
             </div>
-
-          ))}
-
-        </div>
-
-        {/* ========================= */}
-        {/* Skills */}
-        {/* ========================= */}
-
-        <div className="section">
-
-          <div className="section">
-
-  <div className="title">
-
-    <h3>Skills</h3>
-
-    <button
-      type="button"
-      className="add-btn"
-      onClick={addSkill}
-    >
-      + Add
-    </button>
-
-  </div>
-
-  {form.skills.map((skill,index)=>(
-
-    <div className="skill-row" key={index}>
-
-      <input
-        type="text"
-        placeholder="Skill"
-        value={skill}
-        onChange={(e)=>handleSkill(index,e)}
-      />
-
-      <button
-        type="button"
-        className="delete-skill"
-        onClick={()=>removeSkill(index)}
-      >
-        ✖
-      </button>
-
-    </div>
-
-  ))}
-
-</div>
-
-          {form.skills.map((skill, index) => (
-
-            <input
-              key={index}
-              type="text"
-              placeholder="Skill"
-              value={skill}
-              onChange={(e) => handleSkill(index, e)}
-            />
-
-          ))}
-
-        </div>
-
-        {/* ========================= */}
-        {/* Languages */}
-        {/* ========================= */}
-
-        <div className="section">
-
-          <div className="title">
-
-            <h3>Languages</h3>
-
-            <button
-              type="button"
-              className="add-btn"
-              onClick={addLanguage}
-            >
-              + Add
-            </button>
-
           </div>
-
-          {form.languages.map((language, index) => (
-
-            <input
-              key={index}
-              type="text"
-              placeholder="Language"
-              value={language}
-              onChange={(e) => handleLanguage(index, e)}
-            />
-
-          ))}
-
         </div>
-
-        {/* ========================= */}
-        {/* Hobbies */}
-        {/* ========================= */}
-
-        <div className="section">
-
-          <div className="title">
-
-            <h3>Hobbies</h3>
-
-            <button
-              type="button"
-              className="add-btn"
-              onClick={addHobby}
-            >
-              + Add
-            </button>
-
-          </div>
-
-          {form.hobbies.map((hobby, index) => (
-
-            <input
-              key={index}
-              type="text"
-              placeholder="Hobby"
-              value={hobby}
-              onChange={(e) => handleHobby(index, e)}
-            />
-
-          ))}
-
-        </div>
-
       </div>
-
-      {/* ========================= */}
-      {/* Resume Preview */}
-      {/* ========================= */}
-
-      <div className="resume-preview-container">
-
-        <ResumePreview
-          form={form}
-          photo={photo}
-        />
-
-      </div>
-      <div className="resume-buttons">
-
-<button
-type="button"
-className="download-btn"
-onClick={downloadPDF}
->
-
-📄 Download PDF
-
-</button>
-
-<button
-type="button"
-className="print-btn"
-onClick={printResume}
->
-
-🖨 Print
-
-</button>
-
-<button
-type="button"
-className="save-btn"
-onClick={saveResume}
->
-
-💾 Save Resume
-
-</button>
-
-        </div>
-
-      </div>
-
-    </div>
-</div>
-  </>
-);
-
+    </>
+  );
 }
 
 export default ResumeBuilder;

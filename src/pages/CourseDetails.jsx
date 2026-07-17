@@ -32,7 +32,7 @@ const navigate = useNavigate();
 
    const handleEnroll = async () => {
 
-    const token = localStorage.getItem("token");
+    const token = sessionStorage.getItem("token");
 
     if (!token) {
         alert("Please Login First");

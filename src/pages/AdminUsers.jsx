@@ -33,7 +33,7 @@ function AdminUsers() {
 
     try {
 
-      const token = localStorage.getItem("token");
+      const token =sessionStorage.getItem("token");
 
       const response = await axios.get(
         "https://padhai-ka-addaa.onrender.com/api/admin/users",
@@ -67,7 +67,7 @@ function AdminUsers() {
 
     try {
 
-      const token = localStorage.getItem("token");
+      const token = sessionStorage.getItem("token");
 
       await axios.post(
         "https://padhai-ka-addaa.onrender.com/api/admin/users",
@@ -109,8 +109,7 @@ function AdminUsers() {
 
     try {
 
-      const token = localStorage.getItem("token");
-
+      const token = sessionStorage.getItem("token");
       await axios.delete(
         `https://padhai-ka-addaa.onrender.com/api/admin/users/${id}`,
         {

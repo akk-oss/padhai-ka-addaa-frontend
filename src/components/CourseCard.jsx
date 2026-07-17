@@ -8,7 +8,7 @@ function CourseCard({ title, teacher, image }) {
   const handlePayment = async () => {
 
     // Login Check
-    const token = localStorage.getItem("token");
+    const token = sessionStorage.getItem("token");
 
     if (!token) {
       alert("Please login to buy this course.");

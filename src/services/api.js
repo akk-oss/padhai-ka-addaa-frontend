@@ -9,7 +9,7 @@ const api = axios.create({
 
 api.interceptors.request.use((config) => {
 
-    const token = localStorage.getItem("token");
+    const token = sessionStorage.getItem("token");
 
     console.log("JWT Token =", token);
 

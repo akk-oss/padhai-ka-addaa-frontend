@@ -6,13 +6,14 @@ function Navbar({ simple = false, toggleSidebar }) {
 
   const navigate = useNavigate();
 
-  const token = localStorage.getItem("token");
-  const fullName = localStorage.getItem("fullName");
+  const token = sessionStorage.getItem("token");
+const fullName = sessionStorage.getItem("fullName");
+const role = sessionStorage.getItem("role");
 
   const logout = () => {
-    localStorage.clear();
+    sessionStorage.clear();
     navigate("/login");
-  };
+};
 
   if (simple) {
     return (

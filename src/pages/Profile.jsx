@@ -7,11 +7,11 @@ function Profile() {
 const [isEditing, setIsEditing] = useState(false);
   useEffect(() => {
     setUser({
-      id: localStorage.getItem("userId"),
-      fullName: localStorage.getItem("fullName"),
-      email: localStorage.getItem("email"),
-      role: localStorage.getItem("role"),
-      photo: localStorage.getItem("photo"),
+      id: sessionStorage.getItem("userId"),
+      fullName: sessionStorage.getItem("fullName"),
+      email: sessionStorage.getItem("email"),
+      role: sessionStorage.getItem("role"),
+      photo: sessionStorage.getItem("photo"),
     });
   }, []);
 
@@ -27,7 +27,7 @@ const [isEditing, setIsEditing] = useState(false);
       photo: imageUrl,
     });
 
-    localStorage.setItem("photo", imageUrl);
+    sessionStorage.setItem("photo", imageUrl);
   };
 
   return (
@@ -102,7 +102,7 @@ const [isEditing, setIsEditing] = useState(false);
                 <button
                     className="btn btn-success me-2"
                     onClick={()=>{
-                        localStorage.setItem("fullName",user.fullName);
+                        sessionStorage.setItem("fullName",user.fullName);
                         setIsEditing(false);
                         alert("Profile Updated Successfully");
                     }}
