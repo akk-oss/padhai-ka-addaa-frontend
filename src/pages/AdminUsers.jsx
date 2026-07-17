@@ -37,30 +37,29 @@ function AdminUsers() {
       alert("Unable to load users.");
     }
   };
+const deleteUser = async (id) => {
+  if (!window.confirm("Are you sure you want to delete this user?")) {
+    return;
+  }
 
-  const deleteUser = async (id) => {
-    if (!window.confirm("Are you sure you want to delete this user?")) {
-      return;
-    }
+  try {
+    const token = localStorage.getItem("token");
 
-    try {
-      const token = localStorage.getItem("token");
-
-      await axios.delete(
-    `https://padhai-ka-addaa.onrender.com/api/admin/users/${id}`,
-    {
+    await axios.delete(
+      `https://padhai-ka-addaa.onrender.com/api/admin/users/${id}`,
+      {
         headers: {
-            Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
-    }
-);s
+      }
+    );
 
-      loadUsers();
-    } catch (error) {
-      console.error(error);
-      alert("Delete failed.");
-    }
-  };
+    loadUsers();
+  } catch (error) {
+    console.error(error);
+    alert("Delete failed.");
+  }
+};
 
   const getRoleIcon = (role) => {
     if (role === "ADMIN") return <FaUserShield />;
