@@ -93,7 +93,7 @@ localStorage.removeItem("email");
           <span>Practice</span>
         </Link>
 
-        <Link to="/placement" className={isActive("/placement")}>
+        <Link to="/placement-preparation" className={isActive("/placement-preparation")}>
           <FaBriefcase />
           <span>Placement Prep</span>
         </Link>

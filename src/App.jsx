@@ -26,6 +26,7 @@ import Blog from "./pages/Blog";
 import PreviousPapers from "./pages/PreviousPapers";
 import Community from "./pages/Community";
 import Practice from "./pages/Practice";
+import PlacementPreparation from "./pages/PlacementPreparation";
 function App() {
   return (
     <BrowserRouter>
@@ -110,6 +111,10 @@ function App() {
 <Route path="/previous-papers" element={<PreviousPapers />} />
 <Route path="/community" element={<Community />} />
 <Route path="/practice" element={<Practice />} />
+<Route
+  path="/placement-preparation"
+  element={<PlacementPreparation />}
+/>
       </Routes>
     
     </BrowserRouter>
