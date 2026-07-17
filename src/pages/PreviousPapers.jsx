@@ -1,4 +1,6 @@
 import "../assets/css/previousPapers.css";
+import Navbar from "../components/Navbar";
+import Sidebar from "../components/Sidebar";
 
 function PreviousPapers() {
 
@@ -38,55 +40,70 @@ function PreviousPapers() {
   ];
 
   return (
-    <div className="paper-page">
+    <>
+      <Navbar />
 
-      <h1>Previous Year Question Papers</h1>
+      <div className="dashboard-container">
 
-      <p className="paper-subtitle">
-        Download previous year question papers for exam preparation.
-      </p>
+        <Sidebar />
 
-      <div className="paper-grid">
+        <div className="dashboard-content">
 
-        {papers.map((paper) => (
+          <div className="paper-page">
 
-          <div className="paper-card" key={paper.id}>
+            <h1>Previous Year Question Papers</h1>
 
-            <div className="paper-icon">
-              📄
+            <p className="paper-subtitle">
+              Download previous year question papers for exam preparation.
+            </p>
+
+            <div className="paper-grid">
+
+              {papers.map((paper) => (
+
+                <div className="paper-card" key={paper.id}>
+
+                  <div className="paper-icon">
+                    📄
+                  </div>
+
+                  <h2>{paper.subject}</h2>
+
+                  <p>
+                    <strong>University:</strong> {paper.university}
+                  </p>
+
+                  <p>
+                    <strong>Semester:</strong> {paper.semester}
+                  </p>
+
+                  <p>
+                    <strong>Year:</strong> {paper.year}
+                  </p>
+
+                  <a
+                    href={paper.pdf}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <button>
+                      Download PDF
+                    </button>
+                  </a>
+
+                </div>
+
+              ))}
+
             </div>
-
-            <h2>{paper.subject}</h2>
-
-            <p>
-              <strong>University:</strong> {paper.university}
-            </p>
-
-            <p>
-              <strong>Semester:</strong> {paper.semester}
-            </p>
-
-            <p>
-              <strong>Year:</strong> {paper.year}
-            </p>
-
-            <a
-              href={paper.pdf}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <button>
-                Download PDF
-              </button>
-            </a>
 
           </div>
 
-        ))}
+        </div>
 
       </div>
 
-    </div>
+    </>
   );
 }
 

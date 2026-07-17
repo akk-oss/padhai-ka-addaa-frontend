@@ -1,4 +1,6 @@
 import "../assets/css/placementPreparation.css";
+import Navbar from "../components/Navbar";
+import Sidebar from "../components/Sidebar";
 
 function PlacementPreparation() {
 
@@ -42,40 +44,56 @@ function PlacementPreparation() {
   ];
 
   return (
-    <div className="placement-page">
+    <>
+      <Navbar />
 
-      <div className="placement-header">
-        <h1>Placement Preparation</h1>
-        <p>
-          Everything you need to crack campus placements and interviews.
-        </p>
-      </div>
+      <div className="dashboard-container">
 
-      <div className="placement-grid">
+        <Sidebar />
 
-        {sections.map((item) => (
+        <div className="dashboard-content">
 
-          <div className="placement-card" key={item.id}>
+          <div className="placement-page">
 
-            <div className="placement-icon">
-              {item.icon}
+            <div className="placement-header">
+              <h1>Placement Preparation</h1>
+
+              <p>
+                Everything you need to crack campus placements and interviews.
+              </p>
             </div>
 
-            <h2>{item.title}</h2>
+            <div className="placement-grid">
 
-            <p>{item.description}</p>
+              {sections.map((item) => (
 
-            <button>
-              Start Learning
-            </button>
+                <div className="placement-card" key={item.id}>
+
+                  <div className="placement-icon">
+                    {item.icon}
+                  </div>
+
+                  <h2>{item.title}</h2>
+
+                  <p>{item.description}</p>
+
+                  <button>
+                    Start Learning
+                  </button>
+
+                </div>
+
+              ))}
+
+            </div>
 
           </div>
 
-        ))}
+        </div>
 
       </div>
 
-    </div>
+    </>
   );
 }
 

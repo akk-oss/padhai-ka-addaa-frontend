@@ -1,4 +1,6 @@
 import "../assets/css/community.css";
+import Navbar from "../components/Navbar";
+import Sidebar from "../components/Sidebar";
 
 function Community() {
 
@@ -27,57 +29,72 @@ function Community() {
   ];
 
   return (
-    <div className="community-page">
+    <>
+      <Navbar />
 
-      <div className="community-header">
-        <h1>Student Community</h1>
-        <p>
-          Ask questions, share knowledge and connect with other learners.
-        </p>
-      </div>
+      <div className="dashboard-container">
 
-      <div className="community-posts">
+        <Sidebar />
 
-        {posts.map((post) => (
+        <div className="dashboard-content">
 
-          <div className="community-card" key={post.id}>
+          <div className="community-page">
 
-            <div className="community-top">
+            <div className="community-header">
+              <h1>Student Community</h1>
 
-              <div className="avatar">
-                {post.name.charAt(0)}
-              </div>
-
-              <div>
-                <h3>{post.name}</h3>
-                <span>{post.course}</span>
-              </div>
-
+              <p>
+                Ask questions, share knowledge and connect with other learners.
+              </p>
             </div>
 
-            <p className="question">
-              {post.question}
-            </p>
+            <div className="community-posts">
 
-            <div className="community-footer">
+              {posts.map((post) => (
 
-              <span>{post.time}</span>
+                <div className="community-card" key={post.id}>
 
-              <button>
-                Reply
-              </button>
+                  <div className="community-top">
+
+                    <div className="avatar">
+                      {post.name.charAt(0)}
+                    </div>
+
+                    <div>
+                      <h3>{post.name}</h3>
+                      <span>{post.course}</span>
+                    </div>
+
+                  </div>
+
+                  <p className="question">
+                    {post.question}
+                  </p>
+
+                  <div className="community-footer">
+
+                    <span>{post.time}</span>
+
+                    <button>
+                      Reply
+                    </button>
+
+                  </div>
+
+                </div>
+
+              ))}
 
             </div>
 
           </div>
 
-        ))}
+        </div>
 
       </div>
 
-    </div>
+    </>
   );
-
 }
 
 export default Community;

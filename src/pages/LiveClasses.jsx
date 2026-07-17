@@ -1,9 +1,10 @@
 import "../assets/css/liveClasses.css";
+import Navbar from "../components/Navbar";
+import Sidebar from "../components/Sidebar";
 
 function LiveClasses() {
 
   const classes = [
-
     {
       id: 1,
       title: "Java Spring Boot",
@@ -13,7 +14,6 @@ function LiveClasses() {
       live: true,
       link: "https://meet.google.com/"
     },
-
     {
       id: 2,
       title: "React JS Complete Course",
@@ -23,99 +23,69 @@ function LiveClasses() {
       live: false,
       link: "https://meet.google.com/"
     }
-
   ];
 
   return (
+    <>
+      <Navbar />
 
-    <div className="live-page">
+      <div className="dashboard-container">
 
-      <h1>Live Classes</h1>
+        <Sidebar />
 
-      <div className="live-grid">
+        <div className="dashboard-content">
 
-        {
+          <div className="live-page">
 
-          classes.map((item)=>(
+            <h1>Live Classes</h1>
 
-            <div className="live-card" key={item.id}>
+            <div className="live-grid">
 
-              {
+              {classes.map((item) => (
 
-                item.live ?
+                <div className="live-card" key={item.id}>
 
-                <span className="live-badge">
+                  {item.live ? (
+                    <span className="live-badge">🔴 LIVE</span>
+                  ) : (
+                    <span className="upcoming">Upcoming</span>
+                  )}
 
-                  🔴 LIVE
+                  <h2>{item.title}</h2>
 
-                </span>
+                  <p>
+                    <strong>Teacher:</strong> {item.teacher}
+                  </p>
 
-                :
+                  <p>
+                    <strong>Date:</strong> {item.date}
+                  </p>
 
-                <span className="upcoming">
+                  <p>
+                    <strong>Time:</strong> {item.time}
+                  </p>
 
-                  Upcoming
+                  <a
+                    href={item.link}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <button>Join Class</button>
+                  </a>
 
-                </span>
+                </div>
 
-              }
-
-              <h2>{item.title}</h2>
-
-              <p>
-
-                <strong>Teacher :</strong>
-
-                {item.teacher}
-
-              </p>
-
-              <p>
-
-                <strong>Date :</strong>
-
-                {item.date}
-
-              </p>
-
-              <p>
-
-                <strong>Time :</strong>
-
-                {item.time}
-
-              </p>
-
-              <a
-
-                href={item.link}
-
-                target="_blank"
-
-                rel="noreferrer"
-
-              >
-
-                <button>
-
-                  Join Class
-
-                </button>
-
-              </a>
+              ))}
 
             </div>
 
-          ))
+          </div>
 
-        }
+        </div>
 
       </div>
-
-    </div>
-
+    </>
   );
-
 }
 
 export default LiveClasses;

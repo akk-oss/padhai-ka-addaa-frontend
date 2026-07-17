@@ -1,92 +1,96 @@
 import "../assets/css/blog.css";
+import Navbar from "../components/Navbar";
+import Sidebar from "../components/Sidebar";
 
 function Blog() {
 
   const blogs = [
 
     {
-      id:1,
-      image:"https://images.unsplash.com/photo-1516321318423-f06f85e504b3",
-      title:"Top 10 Java Interview Questions",
-      date:"15 July 2026",
-      author:"PadhAI Team",
-      description:"Prepare yourself with the most frequently asked Java interview questions and answers."
+      id: 1,
+      image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3",
+      title: "Top 10 Java Interview Questions",
+      date: "15 July 2026",
+      author: "PadhAI Team",
+      description:
+        "Prepare yourself with the most frequently asked Java interview questions and answers."
     },
 
     {
-      id:2,
-      image:"https://images.unsplash.com/photo-1515879218367-8466d910aaa4",
-      title:"Complete React Roadmap",
-      date:"12 July 2026",
-      author:"PadhAI Team",
-      description:"Learn React from beginner to advanced with this complete roadmap."
+      id: 2,
+      image: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4",
+      title: "Complete React Roadmap",
+      date: "12 July 2026",
+      author: "PadhAI Team",
+      description:
+        "Learn React from beginner to advanced with this complete roadmap."
     },
 
     {
-      id:3,
-      image:"https://images.unsplash.com/photo-1498050108023-c5249f4df085",
-      title:"Spring Boot Complete Guide",
-      date:"10 July 2026",
-      author:"PadhAI Team",
-      description:"Everything you need to know to build REST APIs using Spring Boot."
+      id: 3,
+      image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
+      title: "Spring Boot Complete Guide",
+      date: "10 July 2026",
+      author: "PadhAI Team",
+      description:
+        "Everything you need to know to build REST APIs using Spring Boot."
     }
 
   ];
 
   return (
+    <>
+      <Navbar />
 
-    <div className="blog-page">
+      <div className="dashboard-container">
 
-      <h1>Latest Blogs</h1>
+        <Sidebar />
 
-      <p className="blog-subtitle">
+        <div className="dashboard-content">
 
-        Read programming tutorials, interview tips and career guidance.
+          <div className="blog-page">
 
-      </p>
+            <h1>Latest Blogs</h1>
 
-      <div className="blog-grid">
+            <p className="blog-subtitle">
+              Read programming tutorials, interview tips and career guidance.
+            </p>
 
-        {
+            <div className="blog-grid">
 
-          blogs.map((blog)=>(
+              {blogs.map((blog) => (
 
-            <div className="blog-card" key={blog.id}>
+                <div className="blog-card" key={blog.id}>
 
-              <img src={blog.image} alt={blog.title} />
+                  <img src={blog.image} alt={blog.title} />
 
-              <div className="blog-content">
+                  <div className="blog-content">
 
-                <span>
+                    <span>
+                      {blog.date} • {blog.author}
+                    </span>
 
-                  {blog.date} • {blog.author}
+                    <h2>{blog.title}</h2>
 
-                </span>
+                    <p>{blog.description}</p>
 
-                <h2>{blog.title}</h2>
+                    <button>Read More</button>
 
-                <p>{blog.description}</p>
+                  </div>
 
-                <button>
+                </div>
 
-                  Read More
-
-                </button>
-
-              </div>
+              ))}
 
             </div>
 
-          ))
+          </div>
 
-        }
+        </div>
 
       </div>
-
-    </div>
-
+    </>
   );
-
 }
 
 export default Blog;

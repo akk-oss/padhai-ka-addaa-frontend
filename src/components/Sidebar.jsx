@@ -103,7 +103,7 @@ localStorage.removeItem("email");
           <span>Resume Builder</span>
         </Link>
 
-        <Link to="/ai-doubt-solver" className={isActive("/doubt-solver")}>
+        <Link to="/ai-doubt-solver" className={isActive("/ai-doubt-solver")}>
           <FaRobot />
           <span>Doubt Solver</span>
           <span className="badge-ai">AI</span>

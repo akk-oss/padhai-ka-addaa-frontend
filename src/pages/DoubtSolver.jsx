@@ -1,15 +1,16 @@
 import { useState } from "react";
+import Navbar from "../components/Navbar";
+import Sidebar from "../components/Sidebar";
 import "../assets/css/doubtSolver.css";
 
 function DoubtSolver() {
 
   const [question, setQuestion] = useState("");
-
   const [answer, setAnswer] = useState("");
 
   const askAI = () => {
 
-    if(question.trim()===""){
+    if (question.trim() === "") {
       alert("Please enter your question.");
       return;
     }
@@ -18,59 +19,57 @@ function DoubtSolver() {
     setAnswer(
       "This is a demo AI response. Connect this page with your Spring Boot AI API to get real answers."
     );
-
   };
 
   return (
+    <>
+      <Navbar />
 
-    <div className="ai-page">
+      <div className="dashboard-container">
 
-      <div className="ai-box">
+        <Sidebar />
 
-        <h1>🤖 AI Doubt Solver</h1>
+        <div className="dashboard-content">
 
-        <p>
+          <div className="ai-page">
 
-          Ask any programming or study related question.
+            <div className="ai-box">
 
-        </p>
+              <h1>🤖 AI Doubt Solver</h1>
 
-        <textarea
+              <p>
+                Ask any programming or study related question.
+              </p>
 
-          placeholder="Example: Explain Java Multithreading..."
+              <textarea
+                placeholder="Example: Explain Java Multithreading..."
+                value={question}
+                onChange={(e) => setQuestion(e.target.value)}
+              />
 
-          value={question}
+              <button onClick={askAI}>
+                Ask AI
+              </button>
 
-          onChange={(e)=>setQuestion(e.target.value)}
+              {answer && (
+                <div className="answer-box">
 
-        />
+                  <h3>AI Answer</h3>
 
-        <button onClick={askAI}>
+                  <p>{answer}</p>
 
-          Ask AI
+                </div>
+              )}
 
-        </button>
-
-        {
-
-          answer &&
-
-          <div className="answer-box">
-
-            <h3>AI Answer</h3>
-
-            <p>{answer}</p>
+            </div>
 
           </div>
 
-        }
+        </div>
 
       </div>
-
-    </div>
-
+    </>
   );
-
 }
 
 export default DoubtSolver;

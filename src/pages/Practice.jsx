@@ -1,4 +1,6 @@
 import "../assets/css/practice.css";
+import Navbar from "../components/Navbar";
+import Sidebar from "../components/Sidebar";
 
 function Practice() {
 
@@ -48,50 +50,66 @@ function Practice() {
   ];
 
   return (
-    <div className="practice-page">
+    <>
+      <Navbar />
 
-      <div className="practice-header">
-        <h1>Practice Questions</h1>
-        <p>
-          Improve your skills by solving practice questions.
-        </p>
-      </div>
+      <div className="dashboard-container">
 
-      <div className="practice-grid">
+        <Sidebar />
 
-        {practiceSets.map((item) => (
+        <div className="dashboard-content">
 
-          <div className="practice-card" key={item.id}>
+          <div className="practice-page">
 
-            <div className="practice-icon">
-              📝
+            <div className="practice-header">
+              <h1>Practice Questions</h1>
+
+              <p>
+                Improve your skills by solving practice questions.
+              </p>
             </div>
 
-            <h2>{item.title}</h2>
+            <div className="practice-grid">
 
-            <p>
-              <strong>Questions:</strong> {item.questions}
-            </p>
+              {practiceSets.map((item) => (
 
-            <p>
-              <strong>Level:</strong> {item.level}
-            </p>
+                <div className="practice-card" key={item.id}>
 
-            <p>
-              <strong>Duration:</strong> {item.duration}
-            </p>
+                  <div className="practice-icon">
+                    📝
+                  </div>
 
-            <button>
-              Start Practice
-            </button>
+                  <h2>{item.title}</h2>
+
+                  <p>
+                    <strong>Questions:</strong> {item.questions}
+                  </p>
+
+                  <p>
+                    <strong>Level:</strong> {item.level}
+                  </p>
+
+                  <p>
+                    <strong>Duration:</strong> {item.duration}
+                  </p>
+
+                  <button>
+                    Start Practice
+                  </button>
+
+                </div>
+
+              ))}
+
+            </div>
 
           </div>
 
-        ))}
+        </div>
 
       </div>
 
-    </div>
+    </>
   );
 }
 
