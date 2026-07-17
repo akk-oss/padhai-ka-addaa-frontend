@@ -240,7 +240,7 @@ function Navbar({ simple = false, toggleSidebar }) {
             </li>
 
             <li className="nav-item">
-              <Link className="nav-link" to="/blogs">
+              <Link className="nav-link" to="/blog">
                 Blogs
               </Link>
             </li>
