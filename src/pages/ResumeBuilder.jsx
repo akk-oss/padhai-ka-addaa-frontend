@@ -3,9 +3,17 @@ import ResumePreview from "../components/ResumePreview";
 import "../assets/css/resumeBuilder.css";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
+import { useState } from "react";
+import Navbar from "../components/Navbar";
+import Sidebar from "../components/Sidebar";
 
 function ResumeBuilder() {
 
+  const [showSidebar, setShowSidebar] = useState(false);
+
+const toggleSidebar = () => {
+  setShowSidebar(!showSidebar);
+};
   const [photo, setPhoto] = useState(null);
 
   const [form, setForm] = useState({
@@ -438,11 +446,17 @@ const saveResume = () => {
   alert("Resume Saved Successfully");
 
 };
+return (
+  <>
+    <Navbar toggleSidebar={toggleSidebar} />
 
-  return (
+    <div className="dashboard-container">
 
-    <div className="resume-page">
+      <Sidebar show={showSidebar} />
 
+      <div className="dashboard-content">
+
+        <div className="resume-page">
       {/* ========================= */}
       {/* LEFT SIDE */}
       {/* ========================= */}
@@ -986,11 +1000,14 @@ onClick={saveResume}
 
 </button>
 
-</div>
+        </div>
+
+      </div>
 
     </div>
-
-  );
+</div>
+  </>
+);
 
 }
 
