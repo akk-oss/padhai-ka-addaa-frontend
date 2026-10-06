@@ -40,15 +40,6 @@ function home() {
       subtitle: "Polytechnic Entrance",
     },
   ];
-  const handleBuyCourse = async (course) => {
-
-  const token = localStorage.getItem("token");
-
-  if (!token) {
-    alert("Please login first");
-    window.location.href = "/login";
-    return;
-  }
 
   try {
 
