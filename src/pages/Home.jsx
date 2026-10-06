@@ -1,13 +1,61 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
+
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import Footer from "../components/Footer";
+
 import "../assets/css/home.css";
 
-function home() {
+function Home() {
+
   const [showSidebar, setShowSidebar] = useState(false);
 
+  // =========================
+  // COURSES FROM DATABASE
+  // =========================
+  const [courses, setCourses] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // =========================
+  // FETCH COURSES
+  // =========================
+  useEffect(() => {
+
+    const fetchCourses = async () => {
+
+      try {
+
+        const response = await axios.get(
+          "https://padhai-ka-addaa.onrender.com/api/courses"
+        );
+
+        console.log("Courses API Response:", response.data);
+
+        setCourses(response.data.data || []);
+
+      } catch (error) {
+
+        console.error(
+          "Courses fetch error:",
+          error
+        );
+
+      } finally {
+
+        setLoading(false);
+
+      }
+    };
+
+    fetchCourses();
+
+  }, []);
+
+
+  // =========================
+  // CATEGORIES
+  // =========================
   const categories = [
     {
       icon: "📚",
@@ -40,187 +88,151 @@ function home() {
       subtitle: "Polytechnic Entrance",
     },
   ];
+
+
+  // =========================
+  // BUY COURSE / RAZORPAY
+  // =========================
   const handleBuyCourse = async (course) => {
 
-  const token = localStorage.getItem("token");
+    const token = localStorage.getItem("token");
 
-  if (!token) {
-    alert("Please login first");
-    window.location.href = "/login";
-    return;
-  }
+    if (!token) {
 
-  try {
+      alert("Please login first");
 
-    // Existing backend Razorpay order API
-    const response = await axios.post(
-      "https://padhaikaaddaa.online/api/payment/create-order",
-      {
-        courseId: course.id
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`
+      window.location.href = "/login";
+
+      return;
+    }
+
+    try {
+
+      // Existing backend Razorpay order API
+      const response = await axios.post(
+
+        "https://padhaikaaddaa.online/api/payment/create-order",
+
+        {
+          courseId: course.id
+        },
+
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
         }
-      }
-    );
 
-    const data = response.data;
+      );
 
-    console.log("Order Response:", data);
+      const data = response.data;
 
-
-    // Razorpay Checkout
-    const options = {
-
-      key: data.key,
-
-      amount: data.amount,
-
-      currency: "INR",
-
-      name: "Padhai Ka Addaa",
-
-      description: course.title,
-
-      order_id: data.orderId,
-
-      handler: function (paymentResponse) {
-
-        console.log(
-          "Payment ID:",
-          paymentResponse.razorpay_payment_id
-        );
-
-        console.log(
-          "Order ID:",
-          paymentResponse.razorpay_order_id
-        );
-
-        console.log(
-          "Signature:",
-          paymentResponse.razorpay_signature
-        );
-
-        alert("Payment Successful!");
-      },
-
-      theme: {
-        color: "#0d6efd"
-      }
-
-    };
+      console.log("Order Response:", data);
 
 
-    // Razorpay popup open
-    const razorpay =
-      new window.Razorpay(options);
+      // =========================
+      // RAZORPAY CHECKOUT
+      // =========================
+      const options = {
 
-    razorpay.open();
+        key: data.key,
+
+        amount: data.amount,
+
+        currency: "INR",
+
+        name: "Padhai Ka Addaa",
+
+        description: course.title,
+
+        order_id: data.orderId,
+
+        handler: function (paymentResponse) {
+
+          console.log(
+            "Payment ID:",
+            paymentResponse.razorpay_payment_id
+          );
+
+          console.log(
+            "Order ID:",
+            paymentResponse.razorpay_order_id
+          );
+
+          console.log(
+            "Signature:",
+            paymentResponse.razorpay_signature
+          );
+
+          alert("Payment Successful!");
+
+        },
+
+        theme: {
+          color: "#0d6efd"
+        }
+
+      };
 
 
-  } catch (error) {
+      // Razorpay popup open
+      const razorpay =
+        new window.Razorpay(options);
 
-    console.error(
-      "Razorpay Error:",
-      error
-    );
+      razorpay.open();
 
-    alert(
-      error.response?.data?.message ||
-      "Payment start nahi ho paya."
-    );
-  }
-};
 
-  const courses = [
-    {
-      id: 1,
-      title: "UP Board Class 10th",
-      subtitle: "Complete Board Exam Course",
-      subjects: "Hindi • English • Maths • Science • SST",
-      price: 399,
-      oldPrice: 999,
-      tag: "POPULAR",
-      icon: "📚",
-      gradient: "course-orange",
-    },
-    {
-      id: 2,
-      title: "CBSE Class 10th",
-      subtitle: "Complete CBSE Syllabus",
-      subjects: "Maths • Science • English • SST",
-      price: 499,
-      oldPrice: 1299,
-      tag: "BEST SELLER",
-      icon: "🎓",
-      gradient: "course-blue",
-    },
-    {
-      id: 3,
-      title: "Navodaya Entrance",
-      subtitle: "Class 6th JNVST Preparation",
-      subjects: "Maths • Mental Ability • Language",
-      price: 299,
-      oldPrice: 699,
-      tag: "POPULAR",
-      icon: "🏫",
-      gradient: "course-green",
-    },
-    {
-      id: 4,
-      title: "SSC CHSL",
-      subtitle: "Complete SSC CHSL Course",
-      subjects: "Maths • Reasoning • English • GK",
-      price: 499,
-      oldPrice: 999,
-      tag: "EXAM SPECIAL",
-      icon: "📝",
-      gradient: "course-purple",
-    },
-    {
-      id: 5,
-      title: "SSC CGL",
-      subtitle: "Complete CGL Preparation",
-      subjects: "Quant • Reasoning • English • GK",
-      price: 699,
-      oldPrice: 1499,
-      tag: "PREMIUM",
-      icon: "🏆",
-      gradient: "course-red",
-    },
-    {
-      id: 6,
-      title: "JEECUP Entrance",
-      subtitle: "UP Polytechnic Preparation",
-      subjects: "Maths • Physics • Chemistry",
-      price: 399,
-      oldPrice: 899,
-      tag: "NEW",
-      icon: "🎯",
-      gradient: "course-teal",
-    },
-  ];
+    } catch (error) {
 
+      console.error(
+        "Razorpay Error:",
+        error
+      );
+
+      alert(
+        error.response?.data?.message ||
+        "Payment start nahi ho paya."
+      );
+
+    }
+
+  };
+
+
+  // =========================
+  // HERO COURSE
+  // =========================
+  const heroCourse = courses.length > 0
+    ? courses[0]
+    : null;
 
 
   return (
     <>
+
       <Navbar
-        toggleSidebar={() => setShowSidebar(!showSidebar)}
+        toggleSidebar={() =>
+          setShowSidebar(!showSidebar)
+        }
       />
 
+
       <div className="home-layout">
+
         <Sidebar show={showSidebar} />
 
+
         <main className="home-main">
+
 
           {/* ================= HERO ================= */}
 
           <section className="home-hero">
+
             <div className="container">
 
               <div className="row align-items-center">
+
 
                 <div className="col-lg-7">
 
@@ -228,29 +240,46 @@ function home() {
                     🚀 Welcome to Padhai Ka Addaa
                   </span>
 
+
                   <h1 className="hero-title">
+
                     आपकी सफलता की
+
                     <br />
-                    <span>तैयारी एक ही जगह</span>
+
+                    <span>
+                      तैयारी एक ही जगह
+                    </span>
+
                   </h1>
 
+
                   <p className="hero-description">
+
                     UP Board, CBSE, Navodaya, SSC CHSL,
                     SSC CGL और JEECUP Entrance Exam
                     की complete preparation courses के साथ।
+
                   </p>
+
 
                   <div className="hero-buttons">
 
-                    <button className="btn btn-warning btn-lg">
+                    <button
+                      className="btn btn-warning btn-lg"
+                    >
                       Explore Courses →
                     </button>
 
-                    <button className="btn btn-outline-light btn-lg">
+
+                    <button
+                      className="btn btn-outline-light btn-lg"
+                    >
                       🎥 Free Classes
                     </button>
 
                   </div>
+
 
                   <div className="hero-stats">
 
@@ -279,51 +308,100 @@ function home() {
                 </div>
 
 
-                {/* HERO COURSE */}
+                {/* ================= HERO COURSE ================= */}
 
                 <div className="col-lg-5">
 
                   <div className="hero-course-card">
 
-                    <div className="hero-course-label">
-                      🔥 MOST POPULAR COURSE
-                    </div>
+                    {loading ? (
 
-                    <div className="hero-course-icon">
-                      📚
-                    </div>
+                      <div className="hero-course-label">
+                        Loading course...
+                      </div>
 
-                    <h2>
-                      UP Board Class 10th
-                    </h2>
+                    ) : heroCourse ? (
 
-                    <p>
-                      Complete Board Exam Preparation
-                    </p>
+                      <>
 
-                    <div className="hero-course-list">
+                        <div className="hero-course-label">
+                          🔥 {heroCourse.tag || "POPULAR COURSE"}
+                        </div>
 
-                      <div>✓ All Subjects</div>
-                      <div>✓ Complete Syllabus</div>
-                      <div>✓ Important Questions</div>
-                      <div>✓ Previous Year Questions</div>
-                      <div>✓ Notes & Mock Tests</div>
 
-                    </div>
+                        <div className="hero-course-icon">
+                          {heroCourse.icon || "📚"}
+                        </div>
 
-                    <div className="hero-price">
-                      ₹399
-                      <del>₹999</del>
-                    </div>
 
-                    <button
-                      className="hero-buy-button"
-                      onClick={() =>
-                        handleBuyCourse(courses[0])
-                      }
-                    >
-                      Buy Course →
-                    </button>
+                        <h2>
+                          {heroCourse.title}
+                        </h2>
+
+
+                        <p>
+                          {heroCourse.subtitle ||
+                            heroCourse.description}
+                        </p>
+
+
+                        <div className="hero-course-list">
+
+                          <div>
+                            ✓ Complete Syllabus
+                          </div>
+
+                          <div>
+                            ✓ Live Classes
+                          </div>
+
+                          <div>
+                            ✓ Important Questions
+                          </div>
+
+                          <div>
+                            ✓ Previous Year Questions
+                          </div>
+
+                          <div>
+                            ✓ Notes & Mock Tests
+                          </div>
+
+                        </div>
+
+
+                        <div className="hero-price">
+
+                          ₹{heroCourse.price}
+
+                          {heroCourse.oldPrice && (
+                            <del>
+                              ₹{heroCourse.oldPrice}
+                            </del>
+                          )}
+
+                        </div>
+
+
+                        <button
+                          className="hero-buy-button"
+                          onClick={() =>
+                            handleBuyCourse(heroCourse)
+                          }
+                        >
+                          Buy Course →
+
+                        </button>
+
+                      </>
+
+                    ) : (
+
+                      <div className="hero-course-label">
+                        No course available
+                      </div>
+
+                    )}
 
                   </div>
 
@@ -332,6 +410,7 @@ function home() {
               </div>
 
             </div>
+
           </section>
 
 
@@ -343,7 +422,9 @@ function home() {
 
               <div className="section-heading">
 
-                <span>EXAM CATEGORIES</span>
+                <span>
+                  EXAM CATEGORIES
+                </span>
 
                 <h2>
                   अपनी परीक्षा चुनें
@@ -358,36 +439,38 @@ function home() {
 
               <div className="row g-4">
 
-                {categories.map((category, index) => (
+                {categories.map(
+                  (category, index) => (
 
-                  <div
-                    className="col-xl-2 col-lg-4 col-md-6"
-                    key={index}
-                  >
+                    <div
+                      className="col-xl-2 col-lg-4 col-md-6"
+                      key={index}
+                    >
 
-                    <div className="category-card">
+                      <div className="category-card">
 
-                      <div className="category-icon">
-                        {category.icon}
+                        <div className="category-icon">
+                          {category.icon}
+                        </div>
+
+                        <h3>
+                          {category.title}
+                        </h3>
+
+                        <p>
+                          {category.subtitle}
+                        </p>
+
+                        <button>
+                          View Courses →
+                        </button>
+
                       </div>
-
-                      <h3>
-                        {category.title}
-                      </h3>
-
-                      <p>
-                        {category.subtitle}
-                      </p>
-
-                      <button>
-                        View Courses →
-                      </button>
 
                     </div>
 
-                  </div>
-
-                ))}
+                  )
+                )}
 
               </div>
 
@@ -421,88 +504,157 @@ function home() {
 
               <div className="row g-4">
 
-                {courses.map((course) => (
 
-                  <div
-                    className="col-xl-4 col-lg-6"
-                    key={course.id}
-                  >
+                {loading ? (
 
-                    <div className="course-card">
+                  <div className="col-12 text-center">
 
-                      {/* COURSE HEADER */}
+                    <h4>
+                      Courses loading...
+                    </h4>
 
-                      <div
-                        className={`course-cover ${course.gradient}`}
-                      >
+                  </div>
 
-                        <span className="course-tag">
-                          {course.tag}
-                        </span>
+                ) : courses.length === 0 ? (
 
-                        <div className="course-icon">
-                          {course.icon}
-                        </div>
+                  <div className="col-12 text-center">
 
-                        <h3>
-                          {course.title}
-                        </h3>
+                    <h4>
+                      अभी कोई course available नहीं है।
+                    </h4>
 
-                        <strong>
-                          {course.subtitle}
-                        </strong>
+                  </div>
 
-                      </div>
+                ) : (
 
+                  courses.map((course) => (
 
-                      {/* COURSE BODY */}
+                    <div
+                      className="col-xl-4 col-lg-6"
+                      key={course.id}
+                    >
 
-                      <div className="course-body">
-
-                        <h4>
-                          {course.subtitle}
-                        </h4>
-
-                        <p className="course-subjects">
-                          {course.subjects}
-                        </p>
+                      <div className="course-card">
 
 
-                        <div className="course-features">
+                        {/* COURSE HEADER */}
 
-                          <span>✓ Complete Syllabus</span>
+                        <div
+                          className={`course-cover ${
+                            course.gradient ||
+                            "course-blue"
+                          }`}
+                        >
 
-                          <span>✓ Live Classes</span>
+                          <span className="course-tag">
 
-                          <span>✓ Notes & PDFs</span>
+                            {course.tag ||
+                              "COURSE"}
 
-                          <span>✓ Mock Tests</span>
-
-                        </div>
+                          </span>
 
 
-                        <div className="course-bottom">
+                          <div className="course-icon">
 
-                          <div className="course-price">
-
-                            <strong>
-                              ₹{course.price}
-                            </strong>
-
-                            <del>
-                              ₹{course.oldPrice}
-                            </del>
+                            {course.icon ||
+                              "📚"}
 
                           </div>
 
 
-                          <button
-                            onClick={() =>
-                              handleBuyCourse(course)
-                            }
-                          >
-                            Buy Now →
-                          </button>
+                          <h3>
+
+                            {course.title}
+
+                          </h3>
+
+
+                          <strong>
+
+                            {course.subtitle ||
+                              course.description}
+
+                          </strong>
+
+                        </div>
+
+
+                        {/* COURSE BODY */}
+
+                        <div className="course-body">
+
+                          <h4>
+
+                            {course.subtitle ||
+                              course.title}
+
+                          </h4>
+
+
+                          <p className="course-subjects">
+
+                            {course.subjects ||
+                              "Complete Course"}
+
+                          </p>
+
+
+                          <div className="course-features">
+
+                            <span>
+                              ✓ Complete Syllabus
+                            </span>
+
+                            <span>
+                              ✓ Live Classes
+                            </span>
+
+                            <span>
+                              ✓ Notes & PDFs
+                            </span>
+
+                            <span>
+                              ✓ Mock Tests
+                            </span>
+
+                          </div>
+
+
+                          <div className="course-bottom">
+
+
+                            <div className="course-price">
+
+                              <strong>
+
+                                ₹{course.price}
+
+                              </strong>
+
+
+                              {course.oldPrice && (
+
+                                <del>
+
+                                  ₹{course.oldPrice}
+
+                                </del>
+
+                              )}
+
+                            </div>
+
+
+                            <button
+                              onClick={() =>
+                                handleBuyCourse(course)
+                              }
+                            >
+                              Buy Now →
+                            </button>
+
+
+                          </div>
 
                         </div>
 
@@ -510,9 +662,9 @@ function home() {
 
                     </div>
 
-                  </div>
+                  ))
 
-                ))}
+                )}
 
               </div>
 
@@ -546,14 +698,21 @@ function home() {
 
               <div className="row g-4">
 
+
                 <div className="col-md-3">
 
                   <div className="why-card">
+
                     <div>🎥</div>
-                    <h4>Live Classes</h4>
+
+                    <h4>
+                      Live Classes
+                    </h4>
+
                     <p>
                       Expert teachers की live classes
                     </p>
+
                   </div>
 
                 </div>
@@ -562,11 +721,17 @@ function home() {
                 <div className="col-md-3">
 
                   <div className="why-card">
+
                     <div>📖</div>
-                    <h4>Complete Notes</h4>
+
+                    <h4>
+                      Complete Notes
+                    </h4>
+
                     <p>
                       Chapter-wise notes और PDFs
                     </p>
+
                   </div>
 
                 </div>
@@ -575,11 +740,17 @@ function home() {
                 <div className="col-md-3">
 
                   <div className="why-card">
+
                     <div>📝</div>
-                    <h4>Mock Tests</h4>
+
+                    <h4>
+                      Mock Tests
+                    </h4>
+
                     <p>
                       Real exam pattern पर आधारित tests
                     </p>
+
                   </div>
 
                 </div>
@@ -588,14 +759,21 @@ function home() {
                 <div className="col-md-3">
 
                   <div className="why-card">
+
                     <div>🏆</div>
-                    <h4>Exam Focused</h4>
+
+                    <h4>
+                      Exam Focused
+                    </h4>
+
                     <p>
                       Important Questions और PYQs
                     </p>
+
                   </div>
 
                 </div>
+
 
               </div>
 
@@ -629,6 +807,7 @@ function home() {
 
                 </div>
 
+
                 <button>
                   Explore All Courses →
                 </button>
@@ -645,8 +824,11 @@ function home() {
         </main>
 
       </div>
+
     </>
+
   );
+
 }
 
-export default home;
+export default Home;
