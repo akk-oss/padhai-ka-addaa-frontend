@@ -16,6 +16,7 @@
 
 
 /* ==========================================
+ /* ==========================================
    HERO
 ========================================== */
 
@@ -32,6 +33,25 @@
   padding: 80px 0;
   overflow: hidden;
 }
+
+
+/* HERO LEFT CONTENT */
+
+.home-hero .container {
+  position: relative;
+}
+
+.home-hero .row {
+  align-items: center;
+}
+
+.home-hero .col-lg-7,
+.home-hero .col-lg-5 {
+  position: relative;
+}
+
+
+/* BADGE */
 
 .hero-badge {
   display: inline-block;
@@ -51,6 +71,9 @@
   margin-bottom: 22px;
 }
 
+
+/* TITLE */
+
 .hero-title {
   font-size: 58px;
 
@@ -58,12 +81,19 @@
 
   line-height: 1.1;
 
-  margin-bottom: 20px;
+  margin: 0 0 20px 0;
+
+  position: relative;
+
+  z-index: 2;
 }
 
 .hero-title span {
   color: #ffc107;
 }
+
+
+/* DESCRIPTION */
 
 .hero-description {
   max-width: 680px;
@@ -73,26 +103,71 @@
   line-height: 1.7;
 
   color: #dbe7ff;
+
+  margin: 0;
 }
 
 
-/* HERO BUTTONS */
+/* ==========================================
+   HERO BUTTONS
+========================================== */
 
 .hero-buttons {
   display: flex;
+
+  align-items: center;
 
   gap: 15px;
 
   margin: 30px 0;
 
   flex-wrap: wrap;
+
+  position: relative;
+
+  z-index: 5;
 }
 
 
-/* HERO STATS */
+/* Bootstrap buttons ko override */
+
+.hero-buttons .btn {
+  display: inline-flex !important;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: auto !important;
+
+  min-width: 150px;
+
+  min-height: 52px;
+
+  padding: 12px 24px !important;
+
+  margin: 0 !important;
+
+  position: relative;
+
+  z-index: 5;
+
+  white-space: nowrap;
+
+  line-height: 1.2;
+
+  border-radius: 10px;
+}
+
+
+/* ==========================================
+   HERO STATS
+========================================== */
 
 .hero-stats {
   display: flex;
+
+  align-items: flex-start;
 
   gap: 45px;
 
@@ -133,12 +208,24 @@
 
   padding: 30px;
 
+  width: 100%;
+
+  max-width: 500px;
+
+  margin-left: auto;
+
+  box-sizing: border-box;
+
   box-shadow:
     0 25px 70px rgba(0,0,0,0.35);
 
   transform: rotate(2deg);
 
   transition: 0.3s;
+
+  position: relative;
+
+  z-index: 3;
 }
 
 .hero-course-card:hover {
@@ -151,6 +238,8 @@
   font-size: 13px;
 
   font-weight: 800;
+
+  margin-bottom: 5px;
 }
 
 .hero-course-icon {
@@ -163,18 +252,26 @@
   font-size: 28px;
 
   font-weight: 800;
+
+  line-height: 1.2;
+
+  margin-bottom: 10px;
 }
 
 .hero-course-card p {
   color: #666;
 
   margin-bottom: 15px;
+
+  line-height: 1.5;
 }
 
 .hero-course-list {
   color: #444;
 
   line-height: 2;
+
+  font-size: 15px;
 }
 
 .hero-price {
@@ -211,8 +308,93 @@
   font-weight: 800;
 
   cursor: pointer;
+
+  font-size: 16px;
+
+  display: block;
 }
 
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (max-width: 991px) {
+
+  .home-hero {
+    padding: 60px 0;
+  }
+
+  .hero-title {
+    font-size: 48px;
+  }
+
+  .hero-course-card {
+    margin: 45px auto 0;
+
+    transform: rotate(1deg);
+  }
+
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 576px) {
+
+  .home-hero {
+    padding: 45px 0;
+  }
+
+  .hero-title {
+    font-size: 38px;
+
+    line-height: 1.15;
+  }
+
+  .hero-description {
+    font-size: 16px;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+
+    align-items: stretch;
+
+    width: 100%;
+  }
+
+  .hero-buttons .btn {
+    width: 100% !important;
+
+    min-width: 0;
+
+    white-space: normal;
+  }
+
+  .hero-stats {
+    gap: 25px;
+  }
+
+  .hero-course-card {
+    padding: 24px;
+
+    margin-top: 35px;
+
+    transform: none;
+  }
+
+  .hero-course-card h2 {
+    font-size: 24px;
+  }
+
+  .hero-course-icon {
+    font-size: 55px;
+  }
+
+}
 
 /* ==========================================
    SECTION HEADING
