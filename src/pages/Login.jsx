@@ -20,11 +20,11 @@ function Login() {
 
       console.log("Login Response:", response);
 
-     sessionStorage.setItem("token", response.token);
-sessionStorage.setItem("role", response.role);
-sessionStorage.setItem("fullName", response.fullName);
-sessionStorage.setItem("email", response.email);
-sessionStorage.setItem("userId", response.id);
+      sessionStorage.setItem("token", response.token);
+      sessionStorage.setItem("role", response.role);
+      sessionStorage.setItem("fullName", response.fullName);
+      sessionStorage.setItem("email", response.email);
+      sessionStorage.setItem("userId", response.id);
 
       alert("Login Successful");
 

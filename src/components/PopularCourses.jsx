@@ -1,130 +1,161 @@
-import { Link } from "react-router-dom";
+import React from "react";
 
-const courses = [
+function PopularCourses({ courses = [] }) {
 
-    {
-        id:1,
-        title:"Data Structures",
-        teacher:"Love Babbar",
-        image:"/images/dsa.png",
-        rating:"4.8",
-        students:"12.5K"
-    },
+  const handleBuyCourse = (course) => {
 
-    {
-        id:2,
-        title:"Java Programming",
-        teacher:"Code With Harry",
-        image:"/images/java.png",
-        rating:"4.7",
-        students:"11K"
-    },
+    // Abhi demo ke liye course details page
+    window.location.href = `/course/${course.id}`;
+  };
 
-    {
-        id:3,
-        title:"DBMS Complete Course",
-        teacher:"Apna College",
-        image:"/images/dbms.png",
-        rating:"4.9",
-        students:"8K"
-    },
+  return (
+    <section>
 
-    {
-        id:4,
-        title:"Operating System",
-        teacher:"Neo Academy",
-        image:"/images/os.png",
-        rating:"4.8",
-        students:"7K"
-    }
+      <div className="d-flex justify-content-between align-items-center mb-4">
 
-];
+        <div>
+          <h2 className="fw-bold mb-1">
+            Popular Courses
+          </h2>
 
-function PopularCourses(){
+          <p className="text-muted mb-0">
+            सबसे लोकप्रिय courses में अभी enroll करें
+          </p>
+        </div>
 
-return(
+      </div>
 
-<div className="mt-5">
+      <div className="row g-4">
 
-<div className="d-flex justify-content-between mb-4">
+        {courses.map((course) => (
 
-<h3 className="fw-bold">
-Popular Courses
-</h3>
+          <div
+            className="col-xl-4 col-lg-4 col-md-6 col-sm-12"
+            key={course.id}
+          >
 
-<Link
-to="/courses"
-className="text-decoration-none"
->
+            <div
+              className="card border-0 shadow-sm h-100"
+              style={{
+                borderRadius: "18px",
+                overflow: "hidden"
+              }}
+            >
 
-View All →
+              {/* COURSE IMAGE */}
 
-</Link>
+              <img
+                src={course.image}
+                alt={course.title}
+                className="w-100"
+                style={{
+                  height: "210px",
+                  objectFit: "cover"
+                }}
+              />
 
-</div>
+              <div className="card-body p-4">
 
-<div className="row g-4">
+                {/* BADGES */}
 
-{
-courses.map(course=>(
+                <div className="mb-2">
 
-<div
-className="col-lg-3 col-md-6"
-key={course.id}
->
+                  <span className="badge bg-primary me-2">
+                    {course.board}
+                  </span>
 
-<div
-className="card border-0 shadow-sm rounded-4 h-100"
->
+                  <span className="badge bg-warning text-dark">
+                    {course.className}
+                  </span>
 
-<img
-src={course.image}
-className="card-img-top"
-style={{
-height:"180px",
-objectFit:"cover"
-}}
-/>
+                </div>
 
-<div className="card-body">
+                {/* TITLE */}
 
-<h5>
-{course.title}
-</h5>
+                <h4 className="fw-bold">
+                  {course.title}
+                </h4>
 
-<p className="text-muted">
+                <p className="text-muted">
+                  {course.subtitle}
+                </p>
 
-By {course.teacher}
+                {/* SUBJECTS */}
 
-</p>
+                <p className="small">
+                  <strong>Subjects:</strong>{" "}
+                  {course.subjects}
+                </p>
 
-<div className="d-flex justify-content-between">
+                {/* FEATURES */}
 
-<span>
-⭐ {course.rating}
-</span>
+                <div className="mb-3">
 
-<span>
-👥 {course.students}
-</span>
+                  {course.features.map((feature, index) => (
 
-</div>
+                    <div
+                      key={index}
+                      className="small mb-1"
+                    >
+                      <span className="text-success me-2">
+                        ✓
+                      </span>
 
-</div>
+                      {feature}
 
-</div>
+                    </div>
 
-</div>
+                  ))}
 
-))
-}
+                </div>
 
-</div>
+                <hr />
 
-</div>
+                {/* PRICE */}
 
-)
+                <div className="d-flex align-items-center mb-3">
 
+                  <h3 className="fw-bold text-success mb-0">
+                    ₹{course.price}
+                  </h3>
+
+                  <del className="text-muted ms-2">
+                    ₹{course.oldPrice}
+                  </del>
+
+                  <span className="badge bg-danger ms-auto">
+                    LIMITED OFFER
+                  </span>
+
+                </div>
+
+                {/* BUTTON */}
+
+                <button
+                  className="btn btn-primary w-100 fw-bold"
+                  style={{
+                    borderRadius: "10px",
+                    padding: "12px"
+                  }}
+                  onClick={() =>
+                    handleBuyCourse(course)
+                  }
+                >
+                  Buy Course →
+                </button>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        ))}
+
+      </div>
+
+    </section>
+  );
 }
 
 export default PopularCourses;
