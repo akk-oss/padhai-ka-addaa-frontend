@@ -2,9 +2,9 @@ import { useState } from "react";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import Footer from "../components/Footer";
-import "./home.css";
+import "../assets/css/home.css";
 
-function Home() {
+function home() {
   const [showSidebar, setShowSidebar] = useState(false);
 
   const categories = [
@@ -562,4 +562,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default home;
