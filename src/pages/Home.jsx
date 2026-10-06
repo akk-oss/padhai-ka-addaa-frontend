@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import Footer from "../components/Footer";
@@ -39,6 +40,98 @@ function home() {
       subtitle: "Polytechnic Entrance",
     },
   ];
+  const handleBuyCourse = async (course) => {
+
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    alert("Please login first");
+    window.location.href = "/login";
+    return;
+  }
+
+  try {
+
+    // Existing backend Razorpay order API
+    const response = await axios.post(
+      "https://padhaikaaddaa.online/api/payment/create-order",
+      {
+        courseId: course.id
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+    );
+
+    const data = response.data;
+
+    console.log("Order Response:", data);
+
+
+    // Razorpay Checkout
+    const options = {
+
+      key: data.key,
+
+      amount: data.amount,
+
+      currency: "INR",
+
+      name: "Padhai Ka Addaa",
+
+      description: course.title,
+
+      order_id: data.orderId,
+
+      handler: function (paymentResponse) {
+
+        console.log(
+          "Payment ID:",
+          paymentResponse.razorpay_payment_id
+        );
+
+        console.log(
+          "Order ID:",
+          paymentResponse.razorpay_order_id
+        );
+
+        console.log(
+          "Signature:",
+          paymentResponse.razorpay_signature
+        );
+
+        alert("Payment Successful!");
+      },
+
+      theme: {
+        color: "#0d6efd"
+      }
+
+    };
+
+
+    // Razorpay popup open
+    const razorpay =
+      new window.Razorpay(options);
+
+    razorpay.open();
+
+
+  } catch (error) {
+
+    console.error(
+      "Razorpay Error:",
+      error
+    );
+
+    alert(
+      error.response?.data?.message ||
+      "Payment start nahi ho paya."
+    );
+  }
+};
 
   const courses = [
     {
